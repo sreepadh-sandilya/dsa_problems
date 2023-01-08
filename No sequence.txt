@@ -1,0 +1,81 @@
+#include <iostream>
+using namespace std;
+#include <list>
+#define l1 long long
+void fun()
+{
+    l1 n,k,s,p,j;
+    cin>>n>>k>>s;
+    list<l1>l;
+    j=n;
+    while(s!=0)
+    {
+        // cout<<s%k<<endl;
+        if(s%k==0 || s%k==1)
+        {
+            l.push_back(s%k);
+            s=s/k;
+            n--;
+        }
+        else if(s%k==k-1)
+       {
+           l.push_back(-1);
+           s=(s+1)/k;
+           n--;
+           
+       }
+        else
+        {
+            cout<<-2<<endl;
+            return;
+        }
+    }
+    // cout<<l.size()<<endl;
+    if(l.size()==j)
+    {
+        for(auto i:l)
+        {
+            cout<<i<<" ";
+        }
+        cout<<endl;
+    }
+    // else if(l.size()>j && l[l.size()-1]==0)
+    // {
+    //     for(auto i:l)
+    //     {
+    //         cout<<i<<" ";
+    //     }
+    //     cout<<endl;
+    // }
+    else if(j>l.size())
+    {
+        // cout<<j-l.size()<<endl;
+        l1 f=j-l.size();
+        for(l1 i=0;i<f;i++)
+        {
+            l.push_back(0);
+        }
+        for(auto i:l)
+        {
+            cout<<i<<" ";
+        }
+        cout<<endl;
+    }
+    else
+    {
+        cout<<-2<<endl;;
+    }
+    
+    
+}
+
+int main() {
+	// your code goes here
+	l1 t;
+	cin>>t;
+	while(t--)
+	{
+	    fun();
+	}
+	return 0;
+}
