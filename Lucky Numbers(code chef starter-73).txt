@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int x;
+	    cin>>x;
+	    string k=to_string(x);
+	    int sum=0;
+	    for(int i=0;i<k.length();i++)
+	    {
+	        if(k[i]=='7')
+	        {
+	            sum++;
+	            break;
+	        }
+	    }
+	    
+	    if(sum==0)
+	    {
+	        cout<<"no"<<endl;
+	    }
+	    else
+	    {
+	        cout<<"yes"<<endl;
+	    }
+	}
+	return 0;
+}
