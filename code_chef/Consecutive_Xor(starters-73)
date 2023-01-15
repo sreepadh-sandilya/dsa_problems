@@ -1,0 +1,53 @@
+#include <iostream>
+using namespace std;
+#include <vector>
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n;
+	    cin>>n;
+	    vector<int>v;
+	    for(int i=0;i<n;i++)
+	    {
+	        int a;
+	        cin>>a;
+	        v.push_back(a);
+	    }
+	    
+	    if(n%2!=0)
+	    {
+	        cout<<"yes"<<endl;
+	       
+	    }
+	    else
+	    {
+	        vector<int>:: iterator ptr=v.begin();
+	        for(int i=0;i<n-1;i++)
+	        {
+	            v[i+1]=(v[i+1]^v[i]);
+	            v[i]=(v[i]^v[i]);
+	            
+	        }
+	        
+	        if(v[n-2]==v[n-1])
+	        {
+	            cout<<"yes"<<endl;
+	          
+	        }
+	        else
+	        {
+	            cout<<"no"<<endl;
+	           
+	        }
+	        
+	        
+	    }
+	    
+	    
+	    
+	}
+	return 0;
+}
