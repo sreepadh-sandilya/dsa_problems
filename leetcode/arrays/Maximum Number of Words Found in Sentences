@@ -1,0 +1,24 @@
+class Solution {
+public:
+
+    int mostWordsFound(vector<string>& sentences) {
+        int sum=0,k=0;
+        for(int i=0;i<sentences.size();i++)
+        {
+            sum=0;
+            for(int j=0;j<sentences[i].size();j++)
+            {
+                cout<<sentences[i][j];
+                if(sentences[i][j]==' ')
+                {
+                    sum++;
+                }
+
+            }
+            k=max(sum,k);
+        }
+        return k+1;
+    }
+
+    
+};
