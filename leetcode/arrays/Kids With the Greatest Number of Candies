@@ -1,0 +1,34 @@
+class Solution {
+public:
+    vector<bool> kidsWithCandies(vector<int>& candies, int extraCandies) {
+        int k=candies[0];
+        for(int i=1;i<candies.size();i++)
+        {
+            if(k<candies[i])
+            {
+                k=candies[i];
+            }
+        }
+        vector<bool>v;
+
+
+        for(int i=0;i<candies.size();i++)
+        {
+            if(candies[i]+extraCandies<k)
+            {
+                v.push_back(false);
+            }
+            else
+            {
+                v.push_back(true);
+            }
+
+
+        }
+
+        return v;
+
+        
+
+    }
+};
