@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int arithmeticTriplets(vector<int>& arr, int diff) {
+        int sum=0,n=arr.size();
+        for(int i=0;i<n;i++)
+        {
+            for(int j=i;j<n;j++)
+            {
+                if(arr[j]-arr[i]==diff)
+                {
+                    for(int k=j+1;k<n;k++)
+                    {
+                        if(arr[k]==arr[j]+diff)
+                        {
+                            sum++;
+                        }
+                    }
+                }
+
+            }
+        }
+
+        return sum;
+    }
+};
