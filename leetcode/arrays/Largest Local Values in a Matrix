@@ -1,0 +1,59 @@
+class Solution {
+public:
+    vector<vector<int>> largestLocal(vector<vector<int>>& grid) {
+        
+        vector<vector<int>>g;
+        // vector<int>v;
+        int i=0,n=grid.size();
+        int j=0;
+        
+        while(i<n-2)
+        {
+            vector<int>v;
+            while(j<n-2)
+            {
+                int m=grid[i][j];
+                for(int k=i;k<=i+2;k++)
+                {
+                    for(int p=j;p<=j+2;p++)
+                    {
+                        m=max(grid[k][p],m);
+                        cout<<grid[k][p];
+                        
+
+                    }
+                    cout<<endl;
+                    
+                }
+                cout<<m<<endl;
+                v.push_back(m);
+                j++;
+            }
+            j=0;
+            i++;
+            g.push_back(v);
+        }
+        int l=0;
+
+        // for(int i=0;i<sqrt(v.size());i++)
+        // {
+        //     for(j=0;j<sqrt(v.size());j++)
+        //     {
+        //         g[i].push_back(v[l]);
+        //         l++;
+        //     }
+
+        // }
+
+        return g;
+
+
+        
+
+       
+        
+
+        
+
+    }
+};
