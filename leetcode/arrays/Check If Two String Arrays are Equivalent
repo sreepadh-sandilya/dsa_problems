@@ -20,4 +20,27 @@ public:
             return false;
         }
     }
+    
+    //or can be done as:
+    int word1c=0,word2c=0,string1=0,string2=0;
+        while(word1c<word1.size() && word2c<word2.size())
+        {
+            if(word1[word1c][string1++]!=word2[word2c][string2++])
+            {
+                return false;
+
+            }
+            if(string1==word1[word1c].size())
+            {
+                word1c++;
+                string1=0;
+            }
+            if(string2==word2[word2c].size())
+            {
+                word2c++;
+                string2=0;
+            }
+        }
+
+        return word1c==word1.size() && word2c==word2.size();
 };
