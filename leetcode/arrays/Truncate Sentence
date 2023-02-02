@@ -1,0 +1,38 @@
+// #include <boost/algorithm/string.hpp>
+// using namespace boost::algorithm;
+#include <string.h>
+class Solution {
+public:
+    string truncateSentence(string s, int k) {
+        string p="";
+        int n=0,d=0;
+        while(n<k && d<s.size())
+        {
+            if(s[d]==' ')
+            {
+                p+=s[d];
+                d++;
+                n++;
+            }
+            else
+            {
+                p+=s[d];
+                d++;
+            }
+        }
+        cout<<p<<endl;
+        // string p1=trim(p);
+        if(p[p.size()-1]==' ')
+        {
+            return p.substr(0,p.size()-1);
+        }
+        else
+        {
+            return p.substr(0,p.size());
+        }
+
+        // return p.substr(0,p.size());
+        // return " ";
+        // return p1;
+    }
+};
