@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+#include <vector>
+int main() {
+	// your code goes here
+	#define int long long
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    vector<int>v;
+	    int n,x,o=0,e=0;
+	    cin>>n>>x;
+	    for(int i=0;i<n;i++)
+	    {
+	        int a;
+	        cin>>a;
+	        v.push_back(a);
+	        if(a%2==0)
+	        {
+	            e++;
+	        }
+	        else
+	        {
+	            o++;
+	        }
+	    }
+	    
+	   
+	   
+	   if(x%2==0)
+	   {
+	       if(o!=0)
+	       {
+	           cout<<e<<endl;
+	       }
+	       else
+	       {
+	           cout<<-1<<endl;
+	       }
+	   }
+	   else
+	   {
+	       cout<<e/2+e%2<<endl;
+	   }
+	   
+	   
+	   
+	}
+	
+	return 0;
+}
