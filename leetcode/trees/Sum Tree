@@ -1,0 +1,40 @@
+class Solution
+{
+    public:
+    // int a=0;
+    int sum(Node* root)
+    {
+        if(root==NULL)
+        {
+            return 0;
+        }
+        int x=sum(root->left);
+        int y=sum(root->right);
+        return x+y+root->data;
+        // return a;
+    }
+    bool isSumTree(Node* root)
+    {
+         // Your code here
+         if(root->left==NULL && root->right==NULL)
+             {
+                 return true;
+             }
+          else if(root->left==NULL)
+          {
+            //   return false;
+            bool right=isSumTree(root->right);
+            bool check= root->data==sum(root->left)+sum(root->right);
+        // cout<<check<<endl;
+            return left && right && check;
+          }
+        else{  
+        bool left=isSumTree(root->left);
+        // bool right=isSumTree(root->right);
+        bool check= root->data==sum(root->left)+sum(root->right);
+        // cout<<check<<endl;
+        return left && right && check;
+        }
+        
+    }
+};
