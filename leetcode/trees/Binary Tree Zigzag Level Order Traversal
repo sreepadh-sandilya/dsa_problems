@@ -75,7 +75,7 @@ public:
 
         return v;
         
-        
+        // no need to use the stack...we can use reverse(v.begin(),v.end()) inbuilt vector function to reverse the vector.. and push it into the multidimensional vector
         
     }
 };
