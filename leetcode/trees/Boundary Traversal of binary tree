@@ -1,0 +1,98 @@
+class Solution {
+public:
+    vector<int>s;
+    vector<int>v;
+    
+    void left(Node* root)
+    {
+        Node* l=root;
+        if(l->left!=NULL || l->right!=NULL){
+        v.push_back(l->data);
+        }
+        if(l->left)
+        {
+            l=l->left;
+        }
+        else
+        {
+            // l=l->right;
+            return;
+        }
+        while(l!=NULL && (l->left!=NULL || l->right!=NULL))
+        {
+            v.push_back(l->data);
+            if(l->left)
+            {
+                l=l->left;
+            }
+            else if(l->right)
+            {
+                l=l->right;
+            }
+        }
+    }
+    
+    void right(Node* root)
+    {
+        Node* r=root;
+        if(r->right)
+        {
+            r=r->right;
+        }
+        else
+        {
+            // r=r->left;
+            return;
+        }
+        while(r!=NULL && (r->right!=NULL || r->left!=NULL))
+        {
+            s.push_back(r->data);
+            if(r->right)
+            {
+                r=r->right;
+            }
+            else if(r->left)
+            {
+                r=r->left;
+            }
+        }
+        
+        if(!s.empty())
+        {
+            reverse(s.begin(),s.end());
+            for(int i=0;i<s.size();i++)
+            {
+                v.push_back(s[i]);
+            }
+        }
+    }
+    
+    void leaf(Node* root)
+    {
+        if(root==NULL)
+        {
+            return;
+        }
+        if(root->left==NULL && root->right==NULL)
+        {
+            v.push_back(root->data);
+            return;
+        }
+        leaf(root->left);
+        leaf(root->right);
+    }
+    
+    vector <int> boundary(Node *root)
+    {
+        //Your code here
+        left(root);
+        leaf(root);
+        right(root);
+        
+        return v;
+        
+        
+        
+        
+    }
+};
