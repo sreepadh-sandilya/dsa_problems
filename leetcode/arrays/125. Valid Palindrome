@@ -1,0 +1,39 @@
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        
+        for(int i=0;i<s.length();i++)
+        {
+            // cout<<s[i];
+            if(s[i]==' ')
+            {
+                s.erase(s.begin()+i);
+                i--;
+            }
+            else if(!iswalnum(s[i]))
+            {
+                s.erase(s.begin()+i);
+                i--;
+            }
+        }
+        bool x=true;
+        
+
+        transform(s.begin(), s.end(),s.begin(), ::tolower);
+        cout<<s<<endl;
+        int n=s.length();
+        for(int i=0;i<s.length();i++)
+        {
+            cout<<s[i]<<endl;
+            if(s[i]!=s[n-1-i])
+            {
+                // cout<<s[i]<<endl;
+                x=false;
+                return x;
+            }
+
+        }
+        return x;
+        
+    }
+};
