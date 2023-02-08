@@ -1,0 +1,53 @@
+#include <iostream>
+using namespace std;
+#include <vector>
+#include <algorithm>
+#include <map>
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    #define int long long
+	   int n;
+	   cin>>n;
+	   vector<int>v;
+	   for(int i=0;i<n;i++)
+	   {
+	       int a;
+	       cin>>a;
+	       v.push_back(a);
+	   }
+	   
+	   
+	   sort(v.begin(),v.end(),greater<int>());
+
+
+    map<int,int>m;
+    for(int i=0;i<n;i++)
+    {
+        m[v[i]]++;
+    }
+    int x=0;
+    for(auto i:m)
+    {
+        if(i.second%2!=0)
+        {
+            x=1;
+            break;
+        }
+    }
+    
+    if(x==1)
+    {
+        cout<<"Marichka"<<endl;
+    }
+    else
+    {
+        cout<<"Zenyk"<<endl;
+    }
+	}
+	    
+	return 0;
+}
