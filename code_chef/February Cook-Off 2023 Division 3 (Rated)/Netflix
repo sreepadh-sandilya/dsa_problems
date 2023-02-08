@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+#include <vector>
+#include <algorithm>
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int a,b,c,x;
+	    cin>>a>>b>>c>>x;
+	    vector<int>v;
+	    v.push_back(a);
+	    v.push_back(b);
+	    v.push_back(c);
+	    sort(v.begin(),v.end());
+	    if(v[2]+v[1]>=x)
+	    {
+	        cout<<"yes"<<endl;
+	    }
+	    else
+	    {
+	        cout<<"no"<<endl;
+	    }
+	    
+	}
+	return 0;
+}
