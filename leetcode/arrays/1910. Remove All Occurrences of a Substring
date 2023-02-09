@@ -1,0 +1,19 @@
+class Solution {
+public:
+    string removeOccurrences(string s, string part) {
+        int x=1;
+        do{
+            size_t found = s.find(part);
+            if(found!=std::string::npos){
+            s.erase(found,part.length());
+            
+            }
+            else
+            {
+                x=0;
+            }
+
+        }while(x!=0);
+        return s;
+    }
+};
