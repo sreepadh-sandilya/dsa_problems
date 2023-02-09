@@ -1,0 +1,60 @@
+class Solution {
+public:
+    int compress(vector<char>& chars) {
+        string s="";
+        int n=chars.size(),sum=0;;
+        char c=chars[0];
+        for(int i=0;i<n;i++)
+        {
+            
+            // cout<<chars[i]<<endl;
+            if(chars[i]==c)
+            {
+                sum++;
+                if(i==n-1){
+                s+=c;
+                   if(sum!=1)
+                   {
+                        s+=to_string(sum);
+                   }
+                }
+            }
+            
+
+            
+            else
+            {
+                // cout<<sum<<endl;
+                s+=c;
+                if(sum!=1 && sum<10)
+                {
+                    s+=to_string(sum);
+                }
+                else if(sum>=10)
+                {
+                    s+=to_string(sum);
+                }
+                c=chars[i];
+                sum=1;
+                if(i==n-1){
+                s+=c;
+                   if(sum!=1)
+                   {
+                        s+=to_string(sum);
+                   }
+                }
+            }
+
+        }
+        
+        cout<<s<<endl;
+        for(int i=0;i<s.length();i++)
+        {
+            chars[i]=s[i];
+        }
+
+
+        return s.length();
+        
+    }
+};
