@@ -1,0 +1,16 @@
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& m, int target) {
+        int r=m.size(),c=m[0].size();
+        for(int i=0;i<r;i++)
+        {
+            bool x=binary_search(m[i].begin(),m[i].end(),target);
+            if(x==true)
+            {
+                return x;
+            }
+        }
+        return false;
+        
+    }
+};
