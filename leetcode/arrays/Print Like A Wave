@@ -1,0 +1,17 @@
+#include <bits/stdc++.h> 
+vector<int> wavePrint(vector<vector<int>> arr, int nRows, int mCols)
+{
+    //Write your code here
+    vector<int>v;
+    bool x=true;
+    for(int i=0;i<mCols;i++)
+    {
+        for(int j=0;j<nRows;j++)
+        {
+            int index= x ? j : nRows-j-1;
+            v.push_back(arr[index][i]);
+        }
+        x= !x;
+    }
+    return v;
+}
