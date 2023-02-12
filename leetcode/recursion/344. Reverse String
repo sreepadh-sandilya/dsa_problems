@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<char> reverse(vector<char>& s,int i,int j)
+    {
+        if(i>j)
+        {
+            return s;
+        }
+        swap(s[i],s[j]);
+       return reverse(s,i+1,j-1);
+        // return s;
+
+
+    }
+    void reverseString(vector<char>& s) {
+        int i,j;
+        reverse(s,i=0,j=s.size()-1);
+
+
+        
+    }
+};
+
+//did using recursion..but can be done in iterative way also...
