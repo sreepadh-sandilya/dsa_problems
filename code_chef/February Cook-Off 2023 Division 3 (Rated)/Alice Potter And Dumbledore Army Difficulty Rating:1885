@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+#include <unordered_map>
+int main() {
+	// important: the below two lines will decrease the runtime, to pass all the test cases we have to use this.
+	ios_base::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
+	#define int long long
+	
+    int n,m,sum=0;
+    cin>>n>>m;
+    unordered_map<int,int>p;
+    for(int i=0;i<m;i++)
+    {
+        int a,b;
+        cin>>a>>b;
+        p[a]+=b;
+        sum+=p[a];
+        cout<<sum<<endl;
+        
+        
+        
+    }
+	
+	return 0;
+}
