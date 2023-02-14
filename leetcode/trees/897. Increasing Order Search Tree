@@ -1,0 +1,55 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    queue<TreeNode*>q;
+    void fun(TreeNode* root)
+    {
+        if(root==NULL)
+        {
+            return;
+        }
+        fun(root->left);
+        q.push(root);
+        fun(root->right);
+        return;
+    }
+    
+    TreeNode* increasingBST(TreeNode* root) {
+        if(root==NULL)
+        {
+            return NULL;
+        }
+        fun(root);
+        TreeNode* r;
+        r=q.front();
+        q.pop();
+        TreeNode* head;
+        head=r;
+        while(!q.empty())
+        {
+            cout<<r->val<<endl;
+            r->right=q.front();
+            r=r->right;
+            r->left=NULL;
+            q.pop();
+        }
+        cout<<r->val;
+        return head;
+        
+    }
+
+};
+
+//used queue to store the address of all nodes of inorder traversal...
+//created a pointer r which intially points the first element of queue..
+//and using while loop we can stich every node to its right and make left as NULL and move the pointer to right..
