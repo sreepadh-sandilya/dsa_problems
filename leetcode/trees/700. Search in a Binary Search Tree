@@ -37,7 +37,38 @@ public:
             return root;
         }
         searchBST(root->right,val);
-        return r;
+        return r;   
+    }
+};
+
+// another method with o(n) time complexity:.........................................................................................................
+
+class Solution {
+public:
+    TreeNode* searchBST(TreeNode* root, int val) {
+        if(root->val==val)
+        {
+            return root;
+        }
+        TreeNode* temp=root;
+        while(temp!=NULL)
+        {
+            if(temp->val>val)
+            {
+                temp=temp->left;
+            }
+            else if(temp->val<val)
+            {
+                temp=temp->right;
+            }
+            else
+            {
+                return temp;
+            }
+        }
+
+        temp=NULL;
+        return temp;
 
         
 
