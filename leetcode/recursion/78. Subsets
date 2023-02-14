@@ -1,0 +1,27 @@
+class Solution {
+public:
+    void fun(vector<int>& nums,vector<int>output,int i,vector<vector<int>>& ans)
+    {
+        //base
+        if(i>=nums.size())
+        {
+            ans.push_back(output);
+            return;
+        }
+        //exclude
+        fun(nums,output,i+1,ans);
+
+        // include
+        output.push_back(nums[i]);
+        fun(nums,output,i+1,ans);
+
+    }
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>>ans;
+        vector<int>output;
+        int index=0;
+        fun(nums,output,index,ans);
+        return ans;
+
+    }
+};
