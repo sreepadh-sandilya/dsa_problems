@@ -1,0 +1,27 @@
+#include <bits/stdc++.h> 
+void fun(string str,string output,int index,vector<string>&ans){
+	if(index>=str.length())
+	{
+          if (output.length() > 0) {
+            ans.push_back(output);
+          }
+                return;
+	}
+
+	fun(str,output,index+1,ans);
+
+	output.push_back(str[index]);
+	fun(str,output,index+1,ans);
+}
+vector<string> subsequences(string str){
+
+	vector<string>ans;
+	string output="";
+	int index=0;
+
+	fun(str,output,index,ans);
+	return ans;
+	
+	
+	
+}
