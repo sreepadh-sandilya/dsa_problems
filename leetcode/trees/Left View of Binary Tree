@@ -1,0 +1,46 @@
+vector<int> leftView(Node *root)
+{
+    queue<pair<Node*,int>>q;
+    vector<int>v;
+    if(root==NULL)
+    {
+        return v;
+    }
+    map<int,int>m;
+    q.push(make_pair(root,0));
+    
+    
+    while(!q.empty())
+    {
+        pair<Node*,int>temp=q.front();
+        q.pop();
+        Node* front=temp.first;
+        
+        int lvl=(temp.second);
+        if(!m[lvl])
+        {
+            m[lvl]=front->data;
+        }
+        if(front->left)
+        {
+            q.push(make_pair(front->left,lvl+1));
+        }
+        if(front->right)
+        {
+            q.push(make_pair(front->right,lvl+1));
+        }
+        
+        
+    }
+    
+    for(auto i:m)
+    {
+        v.push_back(i.second);
+    }
+    return v;
+    
+    
+    
+    
+   // Your code here
+}
