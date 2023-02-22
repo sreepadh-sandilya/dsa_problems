@@ -1,0 +1,43 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <iostream>
+#include <stack>
+using namespace std;
+#define MAX_NAME_LEN 60
+int main()
+{
+    string a;
+    getline(cin,a);
+    string k="";
+    stack<string>st;
+    for(auto i:a)
+    {
+        if(i!=' ')
+        {
+            k+=i;
+        }
+        else
+        {
+            k+=i;
+            st.push(k);
+            k="";
+        }
+        
+    }
+    k+=' ';
+    st.push(k);
+    
+    while(!st.empty())
+    {
+        cout<<st.top();
+        st.pop();
+    }
+
+    return 0;
+}
