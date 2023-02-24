@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<int> finalPrices(vector<int>& prices) {
+        stack<int>st,p;
+        
+        vector<int>ans;
+        
+
+        for(int i=0;i<prices.size()-1;i++)
+        {
+            
+         for(int j=i+1;j<prices.size();j++)
+         {
+             if(prices[i]>=prices[j])
+             {
+                 ans.push_back(prices[i]-prices[j]);
+                 break;
+             }
+             else if(j==prices.size()-1)
+             {
+                 ans.push_back(prices[i]);
+                 
+             }
+         }   
+        }
+
+        ans.push_back(prices.back());
+
+
+        return ans;
+
+    }
+};
