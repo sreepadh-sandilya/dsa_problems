@@ -1,0 +1,32 @@
+class Solution{
+  public:
+  void solve(Node* root,int k,int &count,vector<int>v)
+  {
+      //base case
+      if(root==NULL)
+      {
+          return;
+      }
+      v.push_back(root->data);
+      solve(root->left,k,count,v);
+      solve(root->right,k,count,v);
+      int sum=0,n=v.size();
+      for(int i=n-1;i>=0;i--)
+      {
+          sum+=v[i];
+          if(sum==k)
+          {
+              count++;
+          }
+      }
+      
+  }
+    int sumK(Node *root,int k)
+    {
+        // code here 
+        int count=0;
+        vector<int>path;
+        solve(root,k,count,path);
+        return count;
+    }
+};
