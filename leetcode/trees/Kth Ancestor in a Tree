@@ -1,0 +1,34 @@
+vector<int>v;
+void solve(Node *root, int k, int node,vector<int>v,int &n)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    v.push_back(root->data);
+    solve(root->left,k,node,v,n);
+    solve(root->right,k,node,v,n);
+    if(v.back()==node)
+    {
+        if(v.size()<=k)
+       {
+        n=-1;
+       }
+       else{
+        n=v[v.size()-k-1];
+       }
+    }
+    
+    
+}
+int kthAncestor(Node *root, int k, int node)
+{
+    
+    int n;
+    vector<int>v;
+    solve(root,k,node,v,n);
+    return n;
+    
+    
+    // Code here
+}
