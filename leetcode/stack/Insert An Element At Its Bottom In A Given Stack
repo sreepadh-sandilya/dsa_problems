@@ -1,0 +1,25 @@
+#include <bits/stdc++.h> 
+void solve(stack<int> &st,int count,int x,int n)
+{
+    if(st.empty())
+    {
+        st.push(x);
+        return;
+    }
+    int k=st.top();
+    
+    
+    st.pop();
+    
+    solve(st,count+1,x,n);
+    st.push(k);
+
+}
+stack<int> pushAtBottom(stack<int>& st, int x) 
+{
+    int count=1,n=st.size();
+
+    solve(st,count,x,n);
+    return st;
+    // Write your code here.
+}
