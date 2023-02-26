@@ -1,0 +1,34 @@
+void insert(stack<int> &s,int x)
+{
+    if(s.empty())
+    {
+        s.push(x);
+        return;
+    }
+    if(s.top()<=x)
+    {
+        s.push(x);
+        return;
+    }
+    int k=s.top();
+    s.pop();
+    insert(s,x);
+    s.push(k);
+}
+void solve(stack<int>&s)
+{
+    if(s.empty())
+    {
+        return;
+    }
+    int k=s.top();
+    s.pop();
+    solve(s);
+    insert(s,k);
+}
+void SortedStack :: sort()
+{
+    
+   solve(s);
+   //Your code here
+}
