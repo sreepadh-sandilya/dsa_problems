@@ -1,0 +1,28 @@
+    int checkRedundancy(string s) {
+        // code here
+        stack<char>st;
+        for(auto i:s)
+        {
+            if(i=='(' || i=='+' || i=='-' || i=='/' || i=='*')
+            {
+                st.push(i);
+            }
+            else if(i==')')
+            {
+                int sum=0;
+                while(st.top()!='(')
+                {
+                    st.pop();
+                    sum++;
+                   
+                }
+                 if(sum==0)
+                   {
+                    return 1;
+                   }
+                st.pop();
+            }
+        }
+        return 0;
+    }
+};
