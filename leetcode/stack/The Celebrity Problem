@@ -1,0 +1,55 @@
+class Solution 
+{
+    public:
+    //Function to find if there is a celebrity in the party or not.
+    int celebrity(vector<vector<int> >& m, int n) 
+    {
+        // code here 
+        // cout<<1<<endl;
+        map<int,int>p;
+        for(int i=0;i<n;i++)
+        {
+            p[i]=0;
+        }
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(m[i][j]==1)
+                {
+                    p[i]=1;
+                }
+            }
+        }
+        int x=-1;
+        for(auto i:p)
+        {
+            // cout<<i.first<<endl;
+            if(i.second==0)
+            {
+                 x=i.first;
+                 break;
+            }
+        }
+        if(x==-1)
+        {
+            return -1;
+        }
+        // cout<<x<<endl;
+        int y=0;
+        for(int i=0;i<n;i++)
+        {
+            if(i!=x && m[i][x]==0)
+            {
+                y=1;
+                break;
+            }
+        }
+        if(y==0)
+        {
+            return x;
+        }
+        return -1;
+    }
+};
+// time complexity is o(n^2)..
