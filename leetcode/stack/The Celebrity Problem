@@ -1,7 +1,7 @@
 class Solution 
 {
     public:
-    //Function to find if there is a celebrity in the party or not.
+    //time complexity is o(n^2)
     int celebrity(vector<vector<int> >& m, int n) 
     {
         // code here 
@@ -52,4 +52,54 @@ class Solution
         return -1;
     }
 };
-// time complexity is o(n^2)..
+// the below solution is optimized and time complexity is o(n)..
+
+class Solution 
+{
+    public:
+    //Function to find if there is a celebrity in the party or not.
+    int celebrity(vector<vector<int> >& m, int n) 
+    {
+        // code here 
+        stack<int>st;
+        for(int i=0;i<n;i++)
+        {
+            st.push(i);
+            
+        }
+        
+        while(st.size()!=1)
+        {
+            int x=st.top();
+            st.pop();
+            int y=st.top();
+            st.pop();
+            if(m[x][y]==0){
+                st.push(x);
+            }
+            else
+            {
+                st.push(y);
+            }
+        }
+        
+        int x=st.top();
+        int y=0;
+        for(int i=0;i<n;i++)
+        {
+            if(m[x][i]==1)
+            {
+                return -1;
+                
+            }
+            if(i!=x && m[i][x]==0)
+            {
+                return -1;
+            }
+        }
+        
+        return x;
+        
+        
+    }
+};
