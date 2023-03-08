@@ -1,0 +1,21 @@
+void solve(queue<int>&q,queue<int>&p)
+{
+    if(q.empty())
+    {
+        return;
+    }
+    int x=q.front();
+    q.pop();
+    solve(q,p);
+    p.push(x);
+    
+}
+queue<int> rev(queue<int> q)
+{
+    queue<int>p;
+    // add code here.
+    solve(q,p);
+    return p;
+   
+    
+}
