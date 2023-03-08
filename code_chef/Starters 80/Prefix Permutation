@@ -1,0 +1,52 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+#include <string>
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    string s="";
+	    int n;
+	    cin>>n;
+	    if((n*(n+1)/(2))%n==0)
+	    {
+	        cout<<-1<<endl;
+	    }
+	    else
+	    {
+	        vector<int>a,b;
+	        for(int i=1;i<=n;i++)
+	        {
+	            if(i%2==0)
+	            {
+	                b.push_back(i);
+	            }
+	            else
+	            {
+                    a.push_back(i);
+	            }
+	        }
+	        int k=min(a.size(),b.size());
+	        for(int i=0;i<k;i++)
+	        {
+	            s+=to_string(b[i]);
+	            s+=' ';
+	            s+=to_string(a[i]);
+	            s+=' ';
+	        }
+	      
+	        if(a.size()>k)
+	        {
+	            s+=to_string(a.back());
+	        }
+	       
+	        
+	        
+	    }
+	    cout<<s<<endl;
+	}
+	return 0;
+}
