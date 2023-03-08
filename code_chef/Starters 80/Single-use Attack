@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int h,x,y;
+	    cin>>h>>x>>y;
+	    h-=y;
+	    if(h%x==0)
+	    {
+	        cout<<h/x+1<<endl;
+	    }
+	    else
+	    {
+	        cout<<h/x +2<<endl;
+	    }
+	}
+	return 0;
+}
