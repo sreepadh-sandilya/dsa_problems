@@ -1,0 +1,32 @@
+	public:
+		string FirstNonRepeating(string a){
+		    // Code here
+		    map<char,int>m;
+		    queue<char>q;
+		    string s="";
+		    for(auto i:a)
+		    {
+		        m[i]++;
+		        q.push(i);
+		        while(!q.empty()){
+		            if(m[q.front()]>1)
+		            {
+		                q.pop();
+		            }
+		            else
+		            {
+		                s+=q.front();
+		                break;
+		            }
+		        }
+		        if(q.empty())
+		        {
+		            s+='#';
+		        }
+		    }
+		    
+		    return s;
+		    
+		}
+
+};
