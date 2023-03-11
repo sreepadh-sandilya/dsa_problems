@@ -1,0 +1,27 @@
+class Solution
+{
+    public:
+    //Function to sort a linked list of 0s, 1s and 2s.
+    Node* segregate(Node *head) {
+        map<int,int>m;
+        Node* temp=head;
+        while(temp!=NULL)
+        {
+            m[temp->data]++;
+            temp=temp->next;
+        }
+        temp=head;
+        for(auto i:m)
+        {
+            for(int j=0;j<i.second;j++)
+            {
+                temp->data=i.first;
+                temp=temp->next;
+            }
+        }
+        return head;
+        
+        // Add code here
+        
+    }
+};
