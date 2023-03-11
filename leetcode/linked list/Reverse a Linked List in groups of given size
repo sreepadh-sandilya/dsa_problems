@@ -27,3 +27,64 @@ public:
         
     }
 };
+
+
+// for leet code solution:
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        if(head==NULL)
+        {
+            return NULL;
+        }
+       
+            ListNode* temp=head;
+            int count=0;
+            while(temp!=NULL)
+            {
+                temp=temp->next;
+                count++;
+            }
+            
+        
+        
+            // count=0;
+        ListNode* prev=NULL;
+        ListNode* middle=head;
+        ListNode* front=NULL;
+        if(count>=k){
+        int count=0;
+        while(middle!=NULL && count<k)
+        {
+            front=middle->next;
+            middle->next=prev;
+            prev=middle;
+            middle=front;
+            count++;
+            
+
+        }
+        
+        if(front!=NULL){
+            head->next=reverseKGroup(middle,k);
+        }
+        }
+        else{
+            return head;
+        }
+        return prev;
+
+        
+    }
+};
