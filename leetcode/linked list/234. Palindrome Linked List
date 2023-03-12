@@ -27,3 +27,85 @@ public:
         
     }
 };
+
+
+// the below code space complexity is o(1) and time complexity is o(n):
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverse(ListNode* head)
+    {
+        if(head==NULL)
+        {
+            return  NULL;
+        }
+        ListNode* prev=NULL;
+        ListNode* middle=head;
+        ListNode* front;
+        while(middle!=NULL)
+        {
+            front=middle->next;
+            middle->next=prev;
+            prev=middle;
+            middle=front;
+        }
+        return prev;
+    }
+    bool isPalindrome(ListNode* head) {
+
+        ListNode* fast=head;
+        ListNode* slow=head;
+        while( fast!=NULL && fast->next!=NULL)
+        {
+            fast=fast->next->next;
+            slow=slow->next;
+           
+        }
+        if(fast!=NULL)
+        {
+            slow=slow->next;
+        }
+        
+        ListNode* temp=head;
+        if(temp->next==NULL)
+        {
+            return true;
+        }
+        while(temp->next!=slow)
+        {
+            temp=temp->next;
+
+        }
+        temp->next=reverse(slow);
+        ListNode* k=head;
+        
+        ListNode* temp1=head;
+        ListNode* temp2=temp->next;
+        while(temp2!=NULL)
+        {
+            if(temp1->val!=temp2->val)
+            {
+                
+                return false;
+                
+            }
+            temp1=temp1->next;
+            temp2=temp2->next;
+        }
+        return true;
+
+
+
+        
+    }
+};
