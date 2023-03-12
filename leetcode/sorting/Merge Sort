@@ -1,0 +1,57 @@
+class Solution
+{
+    public:
+    void merge(int arr[], int s, int m, int e)
+    {
+         // Your code here
+         int len1=m-s+1;
+         int len2=e-m;
+         int* first=new int[len1];
+         int* second=new int[len2];
+         
+         int mainindex=s;
+         for(int i=0;i<len1;i++)
+         {
+             first[i]=arr[mainindex++];
+         }
+         for(int i=0;i<len2;i++)
+         {
+             second[i]=arr[mainindex++];
+         }
+         int index1=0,index2=0;
+         mainindex=s;
+         while(index1<len1 && index2<len2)
+         {
+             if(first[index1]<second[index2])
+             {
+                 arr[mainindex++]=first[index1++];
+             }
+             else
+             {
+                 arr[mainindex++]=second[index2++];
+             }
+         }
+         
+         while(index1<len1)
+         {
+             arr[mainindex++]=first[index1++];
+         }
+         while(index2<len2)
+         {
+             arr[mainindex++]=second[index2++];
+         }
+    }
+    public:
+    void mergeSort(int arr[], int s, int e)
+    {
+        //code here
+        if(s>=e)
+        {
+            return ;
+        }
+        int m=(s+e)/2;
+        mergeSort(arr,s,m);
+        mergeSort(arr,m+1,e);
+        merge(arr,s,m,e);
+    }
+};
