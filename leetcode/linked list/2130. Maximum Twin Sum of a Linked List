@@ -1,0 +1,53 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    void insertattail(ListNode* &anshead,ListNode* &anstail,ListNode* n)
+    {
+        if(anshead==NULL)
+        {
+            anshead=n;
+            anstail=n;
+        }
+        else
+        {
+            anstail->next=n;
+            anstail=anstail->next;
+
+        }
+
+    }
+    ListNode* mergeNodes(ListNode* head) {
+        ListNode* temp=head;
+        ListNode* anshead=NULL;
+        ListNode* anstail=NULL;
+        temp=temp->next;
+        int sum=0;
+        while(temp!=NULL)
+        {
+            if(temp->val!=0)
+            {
+                sum+=temp->val;
+            }
+            else
+            {
+                ListNode* n=new ListNode(sum);
+                insertattail(anshead,anstail,n);
+                sum=0;
+
+            }
+            temp=temp->next;
+        }
+
+        return anshead;
+        
+    }
+};
