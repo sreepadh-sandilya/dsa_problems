@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int calPoints(vector<string>& operations) {
+        stack<int>st;
+        for(auto i:operations)
+        {
+            if(i=="+")
+            {
+                int x=(st.top());
+                st.pop();
+                int sum=x+(st.top());
+                st.push(x);
+                st.push(sum);
+            }
+            else if(i=="D")
+            {
+                st.push(2*st.top());
+            }
+            else if(i=="C")
+            {
+                st.pop();
+            }
+            else
+            {
+                st.push(stoi(i));
+            }
+            // cout<<st.top()<<" ";
+
+        }
+
+        int sum=0;
+        while(!st.empty())
+        {
+            sum+=st.top();
+            st.pop();
+        }
+        return sum;
+        
+    }
+};
