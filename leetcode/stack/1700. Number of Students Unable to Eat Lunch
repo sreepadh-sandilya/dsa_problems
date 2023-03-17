@@ -1,0 +1,51 @@
+class Solution {
+public:
+    int countStudents(vector<int>& students, vector<int>& sandwiches) {
+     queue<int>q;
+     stack<int>st;
+     for(auto i:students)
+     {
+         q.push(i);
+        //  cout<<i<<endl;
+
+     }   
+     int n=sandwiches.size();
+     for(int i=n-1;i>=0;i--)
+     {
+         st.push(sandwiches[i]);
+         cout<<sandwiches[i]<<endl;
+
+     }
+     
+     int m=students.size();
+     int count=0;
+     cout<<count;
+     while(m>0)
+     {
+         if(q.front()==st.top())
+         {
+             q.pop();
+             st.pop();
+             m--;
+             count=0;
+         }
+         else
+         {
+             int x=q.front();
+             q.pop();
+             q.push(x);
+             count++;
+             if(count==m)
+             {
+                 return m;
+             }
+
+         }
+
+     }
+
+     return 0;
+
+     
+    }
+};
