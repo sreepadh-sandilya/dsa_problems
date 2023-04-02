@@ -1,0 +1,36 @@
+class Solution{
+    public:
+    void heapify(vector<int>&a,int n,int i)
+    {
+        int largest=i;
+        int left=2*i+1;
+        int right=2*i+2;
+        if(left<n && a[largest]<a[left])
+        {
+            largest=left;
+        }
+        if(right<n && a[largest]<a[right])
+        {
+            largest=right;
+        }
+        if(largest!=i)
+        {
+            swap(a[i],a[largest]);
+            heapify(a,n,largest);
+        }
+    }
+    vector<int> mergeHeaps(vector<int> &a, vector<int> &b, int n, int m) {
+        // your code here
+        for(auto i: b)
+        {
+            a.push_back(i);
+        }
+        int k=n+m;
+        for(int i=k/2-1;i>=0;i--)
+        {
+            heapify(a,k,i);
+        }
+        
+        return a;
+    }
+};
