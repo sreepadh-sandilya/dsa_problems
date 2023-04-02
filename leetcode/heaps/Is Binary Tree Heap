@@ -1,0 +1,71 @@
+class Solution {
+  public:
+    bool check(Node* tree)
+    {
+        if(tree==NULL)
+        {
+            return true;
+        }
+        if(tree->left)
+        {
+            if(tree->data<tree->left->data)
+            {
+                return false;
+            }
+        }
+        if(tree->right)
+        {
+            if(tree->data<tree->right->data)
+            {
+                return false;
+            }
+            
+        }
+        
+        bool left=check(tree->left);
+        bool right=check(tree->right);
+        
+        
+        return left && right;
+        
+        
+    }
+    int countnodes(Node* tree){
+        if(tree==NULL)
+        {
+            return 0;
+        }
+        int ans=1+countnodes(tree->left) + countnodes(tree->right);
+        return ans;
+    }
+    
+    
+    bool cbt(Node* tree,int i,int count)
+    {
+        if(tree==NULL)
+        {
+            return true;
+        }
+        if(i>=count)
+        {
+            return false;
+        }
+        
+        
+        bool left=cbt(tree->left,2*i+1,count);
+        bool right=cbt(tree->right,2*i+2,count);
+        return left && right;
+        
+    }
+    
+    bool isHeap(struct Node* tree) {
+        // code here
+        bool ans=check(tree);
+        int count=countnodes(tree);
+        // cout<<count<<" is count"<<endl;
+        // cout<<ans<<" check is "<<endl;
+        bool ans1=cbt(tree,0,count);
+        // cout<<ans1<<" ans1 is"<<endl;
+        return ans && ans1;
+    }
+};
