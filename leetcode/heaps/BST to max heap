@@ -1,0 +1,38 @@
+class Solution{
+  public:
+    void inorder(vector<int>&a,Node* root)
+    {
+        if(root==NULL)
+        {
+            return;
+        }
+        inorder(a,root->right);
+        a.push_back(root->data);
+        inorder(a,root->left);
+    }
+    void preorder(vector<int>&a,Node* root,int &i)
+    {
+        if(root==NULL)
+        {
+            return;
+        }
+        root->data=a[i++];
+        
+        preorder(a,root->right,i);
+        preorder(a,root->left,i);
+        
+    }
+    void convertToMaxHeapUtil(Node* root)
+    {
+        // Your code goes here
+        vector<int>a;
+        inorder(a,root);
+       
+        
+        
+        int i=0;
+        preorder(a,root,i);
+        
+        
+    }    
+};
