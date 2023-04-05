@@ -1,0 +1,74 @@
+class Solution {
+public:
+    class node{
+        public:
+        int data;
+        int i;
+        int j;
+        node(int a,int b,int c)
+        {
+            data=a;
+            i=b;
+            j=c;
+
+        }
+
+    };
+    class compare{
+        public:
+        bool operator()(node* a,node* b)
+        {
+            return a->data>b->data;
+        }
+
+    };
+
+    vector<int> smallestRange(vector<vector<int>>& nums) {
+        priority_queue<node*,vector<node*>,compare>pq;
+        int n=nums.size();
+        int mini=INT_MAX,maxi=INT_MIN;
+        for(int i=0;i<n;i++)
+        {
+            mini=min(nums[i][0],mini);
+            pq.push(new node(nums[i][0],i,0));
+            maxi=max(nums[i][0],maxi);
+        }
+        int start=mini,end=maxi;
+        
+        while(!pq.empty())
+        {
+            node* temp=pq.top();
+            pq.pop();
+            mini=temp->data;
+
+            if(maxi-mini < end-start)
+            {
+                start=mini;
+                end=maxi;
+            }
+            int i=temp->i;
+            int j=temp->j;
+            if(j+1<nums[i].size())
+            {
+            pq.push(new node(nums[i][j+1],i,j+1));
+            maxi=max(nums[i][j+1],maxi);
+            }
+            else
+            {
+                break;
+            }
+            
+            
+
+        }
+        vector<int>v;
+        v.push_back(start);
+        v.push_back(end);
+        return v;
+        
+        
+
+
+        
+    }
+};
