@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int minimumOperations(vector<int>& nums) {
+        priority_queue<int>pq;
+        sort(nums.begin(),nums.end());
+        for(auto i:nums)
+        {
+            if(i>0)
+            {
+                if(pq.empty())
+                {
+                    pq.push(i);
+                }
+                else
+                {
+                    if(pq.top()!=i)
+                    {
+                        pq.push(i);
+                    }
+                }
+            }
+        }
+        return pq.size();
+        
+    }
+};
