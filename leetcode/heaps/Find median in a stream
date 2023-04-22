@@ -1,0 +1,78 @@
+class Solution
+{
+    public:
+    //Function to insert heap
+    priority_queue<int>maxheap;
+    priority_queue<int,vector<int>,greater<int>>minheap;
+    double median=0;
+    vector<int>v;
+    void insertHeap(int &x)
+    {
+        int p=balanceHeaps();
+        switch(p){
+            case 0: if(x>median){
+                minheap.push(x);
+                median=minheap.top();
+            }
+                    else{
+                        maxheap.push(x);
+                        median=maxheap.top();
+                    }
+                    
+                break;        
+            case 1:if(x>median){
+                minheap.push(x);
+                median=(maxheap.top()+minheap.top())/2;
+            }
+                 else{
+                minheap.push(maxheap.top());
+                maxheap.pop();
+                maxheap.push(x);
+                median=(maxheap.top()+minheap.top())/2;
+            }
+                
+                break;
+            case -1:if(x>median){
+                maxheap.push(minheap.top());
+                minheap.pop();
+                minheap.push(x);
+                median=(maxheap.top()+minheap.top())/2;
+            }
+                    else{
+                        maxheap.push(x);
+                        median=(maxheap.top()+minheap.top())/2;
+                        
+                        
+                    }
+                break;
+            
+                   
+        }
+        
+    }
+    
+    //Function to balance heaps.
+    int balanceHeaps()
+    {
+        
+        if(maxheap.size()==minheap.size())
+        {
+            return 0;
+        }
+        else if(maxheap.size()>minheap.size())
+        {
+            return 1;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+    
+    //Function to return Median.
+    double getMedian()
+    {
+        
+        return median;
+    }
+};
