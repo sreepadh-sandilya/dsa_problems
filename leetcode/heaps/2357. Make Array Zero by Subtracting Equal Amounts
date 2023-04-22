@@ -24,3 +24,35 @@ public:
         
     }
 };
+
+
+// another method:
+class Solution {
+public:
+    int minimumOperations(vector<int>& nums) {
+        priority_queue<int,vector<int>,greater<int>>pq;
+        for(auto i:nums)
+        {
+            if(i>0){
+            pq.push(i);
+            }
+        }
+
+        int sum=0;
+        while(!pq.empty())
+        {
+            int x=pq.top();
+            cout<<x<<endl;
+            pq.pop();
+            sum++;
+            while(!pq.empty() && pq.top()==x)
+            {
+                cout<<pq.top()<<" "<<x<<endl;
+                pq.pop();
+            }
+        }
+        return sum;
+        
+        
+    }
+};
