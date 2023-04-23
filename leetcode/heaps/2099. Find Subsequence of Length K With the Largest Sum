@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<int> maxSubsequence(vector<int>& nums, int k) {
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
+        int count=0;
+        for(auto i:nums)
+        {
+            count++;
+            pq.push(make_pair(i,count));
+            if(pq.size()>k)
+            {
+                pq.pop();
+            }
+        }
+
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>p;
+        while(!pq.empty())
+        {
+            p.push(make_pair((pq.top()).second,(pq.top()).first));
+            pq.pop();
+        }
+        vector<int>v;
+        while(!p.empty())
+        {
+            v.push_back((p.top()).second);
+            p.pop();
+        }
+        return v;
+
+        
+        
+    }
+};
