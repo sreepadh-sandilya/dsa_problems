@@ -1,0 +1,86 @@
+class Solution {
+  public:
+  int time=0;
+  map<Node*,Node*>m;
+  map<Node*,bool>mp;
+  Node* create(Node* root,int target)
+  {
+      queue<Node*>q;
+      Node* targetnode=NULL;
+      q.push(root);
+      m[root]=NULL;
+      while(!q.empty())
+      {
+          Node* temp=q.front();
+          q.pop();
+          if(temp->data==target)
+          {
+              targetnode=temp;
+          }
+          if(temp->left)
+          {
+              q.push(temp->left);
+              m[temp->left]=temp;
+          }
+          if(temp->right)
+          {
+              q.push(temp->right);
+              m[temp->right]=temp;
+          }
+      }
+      return targetnode;
+  }
+   
+  int burntree(Node* root)
+  {
+      
+      queue<Node*>q;
+      q.push(root);
+      mp[root]=true;
+      while(!q.empty())
+      {
+          bool flag=false;
+          
+          int size=q.size();
+          for(int i=0;i<size;i++){
+             Node* temp=q.front();
+             q.pop();
+          if(temp->left && !mp[temp->left])
+          {
+              q.push(temp->left);
+              mp[temp->left]=true;
+              flag=true;
+          }
+          if(temp->right && !mp[temp->right])
+          {
+              q.push(temp->right);
+              mp[temp->right]=true;
+              flag=true;
+          }
+          if(m[temp] && !mp[m[temp]])
+          {
+              q.push(m[temp]);
+              mp[m[temp]]=true;
+              flag=true;
+          }
+          }
+        //   cout<<flag<<endl;
+          if(flag==true)
+          {
+             time++;
+          }
+      }
+       
+      return time;
+       
+       
+  }
+   
+    int minTime(Node* root, int target) 
+    {
+        // Your code goes here
+        Node* targetnode=create(root,target);
+        int ans=burntree(targetnode);
+        return ans;
+    }
+};
