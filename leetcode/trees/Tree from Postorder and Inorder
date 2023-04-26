@@ -1,0 +1,36 @@
+map<int,int>m;
+int findposition(int in[],int element,int start,int end)
+    {
+        for(int i=start;i<=end;i++)
+        {
+            if(in[i]==element)
+            return i;
+        }
+        return -1;
+    }
+Node* solve(int in[],int post[],int &index,int ps,int pe,int n)
+    {
+        if(index<0 || ps>pe)
+        {
+            return NULL;
+        }
+        int element=post[index--];
+        Node* root=new Node(element);
+        // cout<<root->data<<endl;
+        int position=findposition(in,element,ps,pe);
+        root->right=solve(in,post,index,position+1,pe,n);
+        root->left=solve(in,post,index,ps,position-1,n);
+        
+        return root;
+        
+    }
+Node *buildTree(int in[], int post[], int n) {
+    // Your code here
+    int postorderIndex=n-1;
+        for(int i=0;i<n;i++)
+        {
+            m[in[i]]=i;
+        }
+        Node* ans=solve(in,post,postorderIndex,0,n-1,n);
+        return ans;
+}
