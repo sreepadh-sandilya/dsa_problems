@@ -1,0 +1,35 @@
+#include <bits/stdc++.h> 
+
+
+
+void inorder(TreeNode<int>* root,vector<TreeNode<int>*> &v)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    inorder(root->left,v);
+    v.push_back(root);
+    inorder(root->right,v);
+}
+
+TreeNode<int>* flatten(TreeNode<int>* root)
+{
+    // Write your code here
+    vector<TreeNode<int>*> v;
+    inorder(root,v);
+    int n=v.size();
+    TreeNode<int>* temp=v[0];
+    for(int i=1;i<n;i++)
+    {
+        temp->right=v[i];
+        temp->left=NULL;
+        temp=temp->right;
+
+    }
+    temp->left=NULL;
+    temp->right=NULL;
+    return v[0];
+    
+
+}
