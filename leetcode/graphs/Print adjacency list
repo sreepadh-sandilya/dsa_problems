@@ -1,0 +1,23 @@
+class Solution {
+  public:
+    // Function to return the adjacency list for each vertex.
+    vector<vector<int>> printGraph(int v, vector<int> adj[]) {
+        // Code here
+        
+        vector<vector<int>>ans;
+        for(int i=0;i<v;i++)
+        {
+            vector<int>p;
+            p.push_back(i);
+            for(auto j:adj[i])
+            {
+                p.push_back(j);
+            }
+            ans.push_back(p);
+        }
+        
+        return ans;
+        
+        
+    }
+};
