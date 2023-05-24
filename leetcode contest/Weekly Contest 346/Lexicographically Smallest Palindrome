@@ -1,0 +1,26 @@
+class Solution {
+public:
+    string makeSmallestPalindrome(string s) {
+        int k=s.length()-1;
+        int i=0;
+        while(i<s.length()/2)
+        {
+            if(s[i]!=s[k])
+            {
+                if(s[i]-'a'>s[k]-'a')
+                {
+                    s[i]=s[k];
+                }
+                else
+                {
+                    s[k]=s[i];
+                }
+            }
+            i++;
+            k--;
+        }
+        return s;
+        
+        
+    }
+};
