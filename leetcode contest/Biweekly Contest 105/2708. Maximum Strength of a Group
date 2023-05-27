@@ -1,0 +1,108 @@
+class Solution {
+public:
+    long long maxStrength(vector<int>& nums) {
+        long long m=INT_MAX,y=1;
+        priority_queue<int,vector<int>,greater<int>>pq;
+        for(auto i:nums)
+        {
+            if(i>0)
+            {
+                if(m==INT_MAX)
+                {
+                    m=1;
+                    m*=i;
+                }
+                else{
+                m*=i;
+                }
+            }
+            if(i==0)
+            {
+                y=0;
+            }
+            if(i<0)
+            {
+                pq.push(i);
+            }
+        }
+        cout<<m<<endl;
+        if(m==INT_MAX)
+        {
+            int n=pq.size();
+            if(y==0 && n<=1)
+            {
+                return 0;
+            }
+            else if(n==1)
+            {
+                return nums[0];
+            }
+            else
+            {
+                
+                if(n%2==0)
+                {
+                    while(!pq.empty())
+                    {
+                        if(m==INT_MAX)
+                        {
+                            m=1;
+                        m*=pq.top();
+                        pq.pop();
+                        }
+                        else{
+                        m*=pq.top();
+                        pq.pop();
+                        }
+                    }
+                }
+                else
+                {
+                    
+                    
+                        
+                    
+                    while(pq.size()>1)
+                    {
+                        if(m==INT_MAX)
+                        {
+                            m=1;
+                        m*=pq.top();
+                        pq.pop();
+                        }
+                        else{
+                        m*=pq.top();
+                        pq.pop();
+                        }
+                    }
+                    
+                }
+            }
+        }
+        else
+        {
+             int n=pq.size();
+                if(n%2==0)
+                {
+                    while(!pq.empty())
+                    {
+                        m*=pq.top();
+                        pq.pop();
+                    }
+            
+               }
+            else
+            {
+                while(pq.size()>1)
+                {
+                    m*=pq.top();
+                    pq.pop();
+                }
+            }
+        
+        
+        }
+        
+        return m;
+    }
+};
