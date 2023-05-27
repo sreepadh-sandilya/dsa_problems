@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int buyChoco(vector<int>& prices, int money) {
+        priority_queue<int>pq;
+        pq.push(prices[0]);
+        pq.push(prices[1]);
+        for(int i=2;i<prices.size();i++)
+        {
+            if(prices[i]<pq.top() && prices[i]<money)
+            {
+                pq.pop();
+                pq.push(prices[i]);
+            }
+        }
+        int x=pq.top();
+        pq.pop();
+        int y=pq.top();
+        pq.pop();
+        if(money-x-y<0)
+        {
+            return money;
+        }
+        else
+        {
+            return money-x-y;
+        }
+    }
+};
+// solved using priority queues 
