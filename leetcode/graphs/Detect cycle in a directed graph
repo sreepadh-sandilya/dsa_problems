@@ -1,0 +1,38 @@
+  bool checkcycle(int node, unordered_map<int, bool>& visited, unordered_map<int, bool>& dfsvisited, vector<int> adj[]) {
+    visited[node] = true;
+    dfsvisited[node] = true;
+
+    for (auto i : adj[node]) {
+        if (!visited[i]) {
+            bool cycledetected = checkcycle(i, visited, dfsvisited, adj);
+            if (cycledetected) {
+                return true;
+            }
+        } else if (dfsvisited[i]) {
+            return true;
+        }
+    }
+
+    dfsvisited[node] = false;  // Reset dfsvisited for the current node
+    return false;
+}
+    
+    bool isCyclic(int V, vector<int> adj[]) {
+        // code here
+        unordered_map <int,bool>visited;
+        unordered_map <int,bool>dfsvisited;
+        for(int i=0;i<V;i++)
+        {
+            if(!visited[i])
+            {
+                bool found=checkcycle(i,visited,dfsvisited,adj);
+                if(found)
+                {
+                    return true;
+                }
+                
+            }
+        }
+        return false;
+    }
+};
