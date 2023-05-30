@@ -1,0 +1,39 @@
+class Solution
+{
+	public:
+	//Function to return list containing vertices in Topological order. 
+	stack<int>st;
+	void solve(int node,unordered_map <int,bool>&visited,vector<int> adj[],vector<int>ans)
+	{
+	    visited[node]=true;
+	    for(auto i:adj[node])
+	    {
+	        if(!visited[i]){
+	        solve(i,visited,adj,ans);
+	        }
+	        
+	    }
+	    st.push(node);
+	}
+	
+	vector<int> topoSort(int V, vector<int> adj[]) 
+	{
+	    // code here
+	    unordered_map <int,bool>visited;
+	    vector<int>ans;
+	    for(int i=0;i<V;i++)
+	    {
+	        if(!visited[i])
+	        {
+	            solve(i,visited,adj,ans);
+	        }
+	    }
+	    while(!st.empty())
+	    {
+	        ans.push_back(st.top());
+	       // cout<<st.top()<<endl;
+	        st.pop();
+	    }
+	    return ans;
+	}
+};
