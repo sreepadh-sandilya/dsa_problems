@@ -1,0 +1,16 @@
+class Solution {
+public:
+    long long minimumCost(string s) {
+        
+        long long n=s.length(),sum=0;
+        for(long long i=1;i<n;i++)
+        {
+            if(s[i]!=s[i-1])
+            {
+                sum+=std::min(i,n-i);
+            }
+        }
+        return sum;
+        
+    }
+};
