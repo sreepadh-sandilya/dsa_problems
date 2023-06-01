@@ -57,3 +57,73 @@ vector<int> shortestPath( vector<pair<int,int>> edges , int N , int m, int src ,
         return ans;
     
 }
+
+
+// solution for geeks for geeks problem:
+class Solution {
+  public:
+    vector<int> shortestPath(vector<vector<int>>& edges, int N,int M, int src){
+        // code here
+        unordered_map <int,list<int>>adj;
+        for(int i=0;i<edges.size();i++)
+        {
+            int u=edges[i][0];
+            int v=edges[i][1];
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+        unordered_map <int,bool>visited;
+        unordered_map <int,int>parent;
+        queue<int>q;
+        q.push(src);
+        visited[src]=true;
+        parent[src]=-1;
+        while(!q.empty())
+        {
+            int front=q.front();
+            q.pop();
+            
+            for(auto i:adj[front])
+            {
+                if(!visited[i])
+                {
+                    q.push(i);
+                    visited[i]=true;
+                    parent[i]=front;
+                    
+                }
+            }
+            
+        }
+        vector<int>ans;
+        for(int i=0;i<N;i++)
+        {
+            int current=i;
+            int sum=0;
+            if(!visited[current])
+            {
+                sum=-1;
+            }
+            else{
+            while(current!=src)
+            {
+                current=parent[current];
+                sum++;
+                if(!visited[current])
+                {
+                    sum=-1;
+                    break;
+                }
+                
+            }
+            }
+            // if()
+            
+            
+            ans.push_back(sum);
+            
+        }
+        
+        return ans;
+    }
+};
