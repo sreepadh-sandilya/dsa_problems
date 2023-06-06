@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int minimizedStringLength(string s) {
+        set<char>mp;
+        for(auto i:s)
+        {
+            mp.insert(i);
+        }
+        return mp.size();
+        
+        
+    }
+};
