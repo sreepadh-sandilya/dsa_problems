@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int semiOrderedPermutation(vector<int>& nums) {
+        int n=nums.size(),x,y;
+        for(int i=0;i<n;i++)
+        {
+            if(nums[i]==1)
+            {
+                x=i;
+            }
+            if(nums[i]==n)
+            {
+                y=i;
+            }
+        }
+        
+        if(y>x)
+        {
+            return n-1-y+x;
+        }
+        else
+        {
+            return n-1-y+x-1;
+        }
+        
+    }
+};
