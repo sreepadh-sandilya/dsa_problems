@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,x;
+	    cin>>n>>x;
+	    string p=to_string(n*x);
+	    if(p.length()!=5 || p[0]=='0')
+	    {
+	        cout<<"no"<<endl;
+	    }
+	    else
+	    {
+	        cout<<"yes"<<endl;
+	    }
+	}
+	return 0;
+}
