@@ -1,0 +1,62 @@
+#include <iostream>
+using namespace std;
+
+bool solve(int m,int n)
+{
+    if(m>n)
+    {
+        if((m-n)%2==0)
+        {
+            return true;
+        }
+        return false;
+    }
+    else
+    {
+        if(m==n)
+        {
+            return true;
+            
+        }
+        else
+        {
+            while(n>m)
+            {
+                n--;
+                m+=3;
+            }
+            if((m-n)%2==0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+    }
+}
+
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int m,n;
+	    cin>>m>>n;
+	    bool  ans=solve(m,n);
+	    if(ans==true)
+	    {
+	        cout<<"yes"<<endl;
+	    }
+	    else
+	    {
+	        cout<<"no"<<endl;
+	    }
+	}
+	return 0;
+}
+
