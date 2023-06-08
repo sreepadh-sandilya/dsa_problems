@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+const int mod=1000000007;
+
+long long pow(int e)
+{
+    int sum=1;
+    while(e--)
+    {
+        sum= (sum *2)%mod;
+    }
+    return sum;
+}
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n;
+	    cin>>n;
+	    int e=0,o=0;
+	    for(int i=0;i<n;i++)
+	    {
+	        int a;
+	        cin>>a;
+	        if(a%2==0)
+	        {
+	            e++;
+	        }
+	        else
+	        {
+	            o++;
+	        }
+	    }
+	   // cout<<pow(e)<<endl;
+	    long long ans=pow(e)+ (o!=0)-1;
+	    cout<< ans%mod<<endl;
+	    
+	    
+	}
+	return 0;
+}
