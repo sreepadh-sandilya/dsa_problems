@@ -1,0 +1,31 @@
+class Solution {
+public:
+    bool isFascinating(int n) {
+        map<int,int>mp;
+        
+        string p=to_string(2*n);
+        string k=to_string(3*n);
+        string m=to_string(n)+p+k;
+        
+        for(auto i:m)
+        {
+            mp[i-'0']++;
+            
+        }
+        
+        
+        for(auto i:mp)
+        {
+            if(i.first==0 && i.second!=0)
+            {
+                return false;
+            }
+            else if(i.first!=0 && (i.second >1 || i.second==0))
+            {
+                return false;
+            }
+        }
+        return true;
+        
+    }
+};
