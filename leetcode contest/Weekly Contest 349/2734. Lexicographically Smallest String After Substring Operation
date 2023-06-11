@@ -1,0 +1,72 @@
+class Solution {
+public:
+    string smallestString(string s) {
+        int k=-1;
+        int p=s.length(),l=s.length();
+        for(int i=0;i<s.length();i++)
+        {
+            if(s[i]=='a')
+            {
+                k=i;
+                // cout<<k<<endl;
+                break;
+            }
+        
+        }
+        
+        
+        if(k==0)
+        {
+            if(s.length()==1)
+            {
+                return "z";
+            }
+            for(int i=1;i<s.length();i++)
+            {
+                if(s[i]!='a')
+                {
+                    p=i;
+                    break;
+                }
+                
+            }
+           if(p!=s.length()){ 
+            for(int i=p+1;i<s.length();i++)
+            {
+                if(s[i]=='a')
+                {
+                    l=i;
+                    break;
+                }
+            }
+               for(int i=p;i<l;i++)
+               {
+                   s[i]=s[i]-1;
+               }
+           }
+            else
+        {
+            s[s.length()-1]='z';
+        }
+            
+        }
+        
+        if(k==-1)
+        {
+            for(int i=0;i<s.length();i++)
+            {
+                s[i]=s[i]-1;
+            }
+        }
+        else
+        {
+            for(int i=0;i<k;i++)
+            {
+                s[i]=s[i]-1;
+            }
+        }
+        
+        return s;
+        
+    }
+};
