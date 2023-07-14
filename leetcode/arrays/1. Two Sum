@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int,int>m;
+        vector<int>ans;
+        int i=1;
+        for(auto j:nums)
+        {
+            m[j]=i;
+            i++;
+        }
+        int n=nums.size();
+        for(int k=0;k<n;k++)
+        {
+            if(m[target-nums[k]]!=0 && m[target-nums[k]]-1!=k)
+            {
+                cout<<k<<" "<<m[target-nums[k]];
+                ans.push_back(k);
+                ans.push_back(m[target-nums[k]]-1);
+                break;
+            }
+
+
+        }
+        return ans;
+    }
+};
