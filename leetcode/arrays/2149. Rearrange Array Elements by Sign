@@ -1,0 +1,21 @@
+ int n=nums.size();
+        vector<int>ans(n);
+        int i=0,j=1;
+        for(auto k:nums)
+        {
+            if(k>0)
+            {
+                ans[i]=k;
+                i+=2;
+            }
+            else
+            {
+                ans[j]=k;
+                j+=2;
+            }
+        }
+        return ans;
+        
+
+    }
+};
