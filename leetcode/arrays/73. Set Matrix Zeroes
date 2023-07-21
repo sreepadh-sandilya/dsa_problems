@@ -34,3 +34,41 @@ public:
         
     }
 };
+
+
+uses o(m+n) space complexity 
+
+void setZeroes(vector<vector<int>>& matrix) {
+        stack<pair<int,int>>st;
+
+        int n=matrix.size(),m=matrix[0].size();
+        unordered_set<int>r,c;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(matrix[i][j]==0){
+                // st.push(make_pair(i,j));
+                r.insert(i);
+                c.insert(j);
+                }
+            }
+
+        }
+
+        for(auto i:r)
+        {
+            for(int j=0;j<m;j++)
+            {
+                matrix[i][j]=0;
+            }
+        }
+        for(auto i:c)
+        {
+            for(int j=0;j<n;j++)
+            {
+                matrix[j][i]=0;
+            }
+        }
+
+}
