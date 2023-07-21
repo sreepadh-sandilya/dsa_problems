@@ -1,0 +1,27 @@
+int findLongestConseqSubseq(int arr[], int n)
+    {
+        unordered_set<int>st;
+        for(int i=0;i<n;i++)
+        {
+            st.insert(arr[i]);
+        }
+        int longstreak=0;
+        
+        for(auto i:st)
+        {
+            if(!st.count(i-1))
+            {
+                int curr=i,streak=0;
+                
+                while(st.count(curr++))
+                {
+                    streak++;
+                }
+                longstreak=max(streak,longstreak);
+            }
+            
+        }
+        
+        return longstreak;
+    }  
+// time complexity is o(2n) 
