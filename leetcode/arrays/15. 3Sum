@@ -1,0 +1,38 @@
+//o(n^2 * log(n))- time complexity
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>>ans;
+        unordered_set<vector<int>>p;
+        int n=nums.size();
+        for(int i=0;i<n;i++)
+        {
+            unordered_set<int>st;
+
+            for(int j=i+1;j<n;j++)
+            {
+                vector<int>v;
+                int sum= -(nums[i]+nums[j]);
+                if(st.find(sum)!=st.end())
+                {
+                     v.push_back(nums[i]);
+                     v.push_back(nums[j]);
+                     v.push_back(sum);
+                     sort(v.begin(),v.end());
+                    p.insert(v);
+                }
+                st.insert(nums[j]);
+
+            }
+        }
+
+        for(auto i:p)
+        {
+            ans.push_back(i);
+        }
+
+        return ans;
+
+        
+    }
+};
