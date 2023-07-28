@@ -1,0 +1,44 @@
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        sort(nums.begin(), nums.end());
+        size_t n = nums.size(); // Using size_t to avoid integer overflow
+        vector<vector<int>> ans;
+        
+        for (size_t i = 0; i < n - 1; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            for (size_t j = i + 1; j < n; j++) {
+                if (j > i + 1 && nums[j] == nums[j - 1]) {
+                    continue;
+                }
+                size_t m = j + 1, k = n - 1;
+                
+                while (m < k) {
+                    long long sum = static_cast<long long>(nums[i]) +
+                                    static_cast<long long>(nums[j]) +
+                                    static_cast<long long>(nums[m]) +
+                                    static_cast<long long>(nums[k]);
+                    if (sum > target) {
+                        k--;
+                    } else if (sum < target) {
+                        m++;
+                    } else {
+                        vector<int> v = {nums[i], nums[j], nums[m], nums[k]};
+                        ans.push_back(v);
+                        m++;
+                        k--;
+                        while (m < k && nums[m] == nums[m - 1]) {
+                            m++;
+                        }
+                        while (m < k && nums[k] == nums[k + 1]) {
+                            k--;
+                        }
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+};
