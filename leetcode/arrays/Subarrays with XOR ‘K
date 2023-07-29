@@ -1,0 +1,29 @@
+#include<map>
+#include <climits>
+int subarraysWithSumK(vector < int > a, int b) {
+    // Write your code here
+    map<int,int>mp;
+    int sum=0,k=0;
+    for(auto i:a)
+    {
+       
+       
+       
+        k=(k^i);
+       
+       if(k==b)
+       {
+           sum++;
+       }
+       if(mp[(k^b)])
+       {
+           sum+=mp[(k^b)];
+       }
+       mp[(k)]++;
+
+
+    }
+
+    return sum;
+
+}
