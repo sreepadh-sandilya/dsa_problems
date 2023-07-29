@@ -40,3 +40,42 @@ public:
         
     }
 };
+
+
+// another method:
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& in) {
+        sort(in.begin(),in.end());
+        vector<vector<int>>ans;
+        int n=in.size();
+        for(auto i:in)
+        {
+            if(ans.size()==0)
+            {
+                ans.push_back(i);
+            }
+            else
+            {
+                vector<int>v=ans.back();
+                if(v[1]>=i[0])
+                {
+                    if(v[1]<i[1])
+                    {
+                        v[1]=i[1];
+                        ans.pop_back();
+                        ans.push_back(v);
+                    }
+                }
+                else
+                {
+                    ans.push_back(i);
+                }
+
+            }
+        }
+
+        return ans;
+        
+    }
+};
