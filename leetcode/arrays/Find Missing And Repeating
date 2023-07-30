@@ -1,0 +1,38 @@
+class Solution{
+public:
+    vector<int> findTwoElement(vector<int> arr, int n) {
+        // code here
+
+
+        int z,p;
+        for(int i=0;i<n;i++)
+        {
+            int x=abs(arr[i]);
+            if(arr[x-1]<0)
+            {
+                z=x;
+                // break;
+            }
+            else
+            {
+                arr[x-1]= -(arr[x-1]);
+            }
+        }
+        // cout<<z<<endl;
+        // cout<<sum<<endl;
+         for(int i=0;i<n;i++)
+         {
+             if(arr[i]>0)
+             {
+                 p=i+1;
+                 break;
+             }
+         }
+        
+        
+        
+        // return p;
+        vector<int>v={z,p};
+        return v;
+    }
+};
