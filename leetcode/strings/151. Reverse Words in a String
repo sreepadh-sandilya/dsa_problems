@@ -1,0 +1,45 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        stack<string>st;
+        string w="";
+        for(auto i:s)
+        {
+            if(i==' ')
+            {
+                if(w!=""){
+                st.push(w);
+                w="";
+                }
+            }
+            else
+            {
+                w+=i;
+            }
+        }
+
+        if(w!="")
+        {
+            st.push(w);
+        }
+
+        string result="";
+        while(!st.empty())
+        {
+            result+=st.top();
+            st.pop();
+            if(!st.empty())
+            {
+                result+=" ";
+            }
+        }
+
+        return result;
+        
+        
+    }
+};
+
+
+
+
