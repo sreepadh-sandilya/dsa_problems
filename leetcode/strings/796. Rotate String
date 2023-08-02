@@ -1,3 +1,4 @@
+// brute forcce sol
 class Solution {
 public:
     bool rotateString(string s, string goal) {
@@ -23,6 +24,44 @@ public:
              }
            }
            if(y==1)
+           {
+               return true;
+           }
+       }
+
+       return false;
+    }
+};
+
+// optimized solution using queues:
+class Solution {
+public:
+    bool rotateString(string s, string goal) {
+        int n=s.length();
+        int m=goal.length();
+       if(n!=m)
+       {
+           return false;
+       }
+       queue<char>a,b;
+       for(auto i:s)
+       {
+           a.push(i);
+       }
+       for(auto i:goal)
+       {
+           b.push(i);
+       }
+
+       if(a==b)
+       {
+           return true;
+       }
+       while(n--)
+       {
+           a.push(a.front());
+           a.pop();
+           if(a==b)
            {
                return true;
            }
