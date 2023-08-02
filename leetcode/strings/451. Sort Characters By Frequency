@@ -1,0 +1,32 @@
+class Solution {
+public:
+    string frequencySort(string s) {
+        priority_queue<pair<int,char>>pq;
+        map<char,int>mp;
+        for(auto i:s)
+        {
+            mp[i]++;
+        }
+        for(auto i:mp)
+        {
+            pq.push(make_pair(i.second,i.first));
+        }
+
+
+        string p="";
+        while(!pq.empty())
+        {
+            pair<int,char>temp=pq.top();
+            pq.pop();
+            int k=temp.first;
+            char b=temp.second;
+            while(k--)
+            {
+               p+=b;
+            }
+        }
+
+        return p;
+        
+    }
+};
