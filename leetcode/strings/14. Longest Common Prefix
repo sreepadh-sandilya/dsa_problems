@@ -1,0 +1,23 @@
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& str) {
+        string result="";
+        sort(str.begin(),str.end());
+        int n=str.size();
+        int k=n-1;
+        string ans="";
+        for(int i=0;i<min(str[0].length(),str[k].length());i++)
+        {
+            if(str[0][i]==str[k][i])
+            {
+                ans+=str[0][i];
+            }
+            else
+            {
+                return ans;
+            }
+        }
+        return ans;
+        
+    }
+};
