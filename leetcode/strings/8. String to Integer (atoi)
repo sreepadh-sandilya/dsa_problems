@@ -1,0 +1,97 @@
+class Solution {
+public:
+    int myAtoi(string s) {
+
+        if(s=="")
+        {
+            return 0;
+        }
+        int n=s.length();
+        int y=0;
+        int i=0;
+        string p="";
+        while(i<n)
+        {
+            // cout<<s[i]<<endl;
+            if(s[i]==' ')
+            {
+                if(y!=0)
+                {
+                    return 0;
+                }
+
+                
+            }
+            else if(s[i]=='-')
+            {
+               y=1;
+               i++;
+               break;
+            }
+            else if(s[i]=='+')
+            {
+                y=2;
+                i++;
+                break;
+            }
+            else
+            {
+                // return 0;
+                break;
+            }
+            i++;
+        }
+        while(i<n)
+        {
+            // cout<<s[i]<<endl;
+            if(s[i]=='0' || s[i]=='1' || s[i]=='2' || s[i]=='3' || s[i]=='4' || s[i]=='5' || s[i]=='6' || s[i]=='7' || s[i]=='8' || s[i]=='9' )
+            {
+               p+=s[i];
+            }
+            else
+            {
+                if(p.empty())
+                {
+                    return 0;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            i++;
+        }
+        if(p.empty())
+        {
+            return 0;
+        }
+        
+        int base=0;
+        for(auto i:p)
+        {
+            if(base>INT_MAX/10 || (base==INT_MAX/10 && i-'0'>7))
+            {
+                if(y==0 || y==2){
+                    return INT_MAX;
+                }
+                else
+                {
+                    return INT_MIN;
+                }
+            }
+            base=base*10 + (i-'0');
+
+        }
+
+        if(y==0 || y==2)
+        {
+            return base;
+        }
+        else
+        {
+            return -base;
+        }
+       
+
+    }
+};
