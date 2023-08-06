@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int accountBalanceAfterPurchase(int p) {
+        int k=p%10;
+        if(k<5)
+        {
+            return 100-(p-k);
+        }
+        else
+        {
+            return 100 -(p+(10-k));
+        }
+        
+    }
+};
