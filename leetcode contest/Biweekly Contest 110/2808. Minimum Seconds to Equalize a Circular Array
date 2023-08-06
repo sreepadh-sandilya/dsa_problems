@@ -1,0 +1,43 @@
+
+
+class Solution {
+public:
+    int minimumSeconds(vector<int>& nums) {
+        map<int, vector<int>> mp;
+        int n = nums.size();
+        
+        for (int i = 0; i < n; i++) {
+            mp[nums[i]].push_back(i);
+        }
+        
+        int a = 0;
+        int b;
+        vector<int> v;
+        
+        for (auto i : mp) {
+            if (i.second.size() > a) { // Corrected comparison operator
+                a = i.second.size();
+                // cout<<a<<endl;
+                b = i.first;
+                v = i.second;
+            }
+        }
+        
+        int z=0;
+        n=v.size();
+        cout<<n<<endl;
+        if(n==1)
+        {
+            
+        }
+        for(int i=0;i<n-1;i++)
+        {
+            cout<<v[i+1]<<endl;
+            int sum=(v[i]+v[i+1])/2;
+            z=max(z,min(sum-v[i],v[i+1]-sum));
+            
+        }
+        return z;
+        
+    }
+};
