@@ -1,0 +1,40 @@
+class Solution
+{
+  public:
+   long long int solve(string s,int k)
+   {
+       int n=s.length(),i=0,j=0;
+       long long int sum=0;
+    //   unordered_map<char,int>mp;
+    vector<int>mp(26);
+       int m=0;
+       while(i<n)
+       {
+           if(!mp[s[i]-'a'])
+           {
+               m++;
+           }
+           mp[s[i]-'a']++;
+           while(m>k)
+           {
+               mp[s[j]-'a']--;
+               if(!mp[s[j]-'a'])
+               {
+                   m--;
+               }
+               j++;
+               
+           }
+           sum+=i-j+1;
+           i++;
+       }
+       
+       return sum;
+       
+   }
+    long long int substrCount (string s, int k) {
+    	//code here.
+    	
+    	return solve(s,k)-solve(s,k-1);
+    }
+};
