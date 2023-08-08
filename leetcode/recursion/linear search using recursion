@@ -34,3 +34,27 @@ int main() {
 
     return 0;
 }
+
+
+class Solution {
+  public:
+    bool check(int *arr,int n){
+        if(n==0 || n==1)
+        {
+            return true;
+        }
+        if(arr[0]>arr[1])
+        {
+            return false;
+        }
+        else
+        {
+            check(arr+1,n-1);
+        }
+    }
+    bool arraySortedOrNot(int arr[], int n) {
+        // code here
+        
+        check(arr,n);
+    }
+};
