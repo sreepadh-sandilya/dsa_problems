@@ -1,0 +1,20 @@
+int solve(int *arr,int n)
+{
+    // int sum=0;
+    if(n==0)
+    {
+        return 0;
+    }
+    else
+    {
+        return arr[0]+solve(arr+1,n-1);
+    }
+    
+    
+}
+
+int sumElement(int arr[],int n)
+{
+    //Your code here
+    return solve(arr,n);
+}
