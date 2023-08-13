@@ -1,0 +1,36 @@
+class Solution {
+public:
+    void maxi(int i,map<int,int>&mp)
+    {
+        int k=-1;
+        int j=i;
+        while(i!=0)
+        {
+            k=max(k,i%10);
+            i=i/10;
+        }
+        mp[j]=k;
+    }
+    int maxSum(vector<int>& nums) {
+        map<int,int>mp;
+        for(auto i:nums)
+        {
+            maxi(i,mp);
+        }
+        
+        int sum=-1;
+        int n=nums.size();
+        for(int i=0;i<n;i++)
+        {
+            for(int j=i+1;j<n;j++)
+            {
+                if(mp[nums[i]]==mp[nums[j]])
+                {
+                    sum=max(sum,nums[i]+nums[j]);
+                }
+            }
+        }
+        
+        return sum;
+    }
+};
