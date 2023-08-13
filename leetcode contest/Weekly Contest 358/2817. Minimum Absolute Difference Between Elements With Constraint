@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int minAbsoluteDifference(vector<int>& nums, int x) {
+        set<int>st;
+        int sum=INT_MAX;
+        int n=nums.size();
+        for(int i=x;i<n;i++)
+        {
+            st.insert(nums[i-x]);
+            auto it=st.lower_bound(nums[i]);
+            if(it!=st.end())
+            {
+                sum=min(sum,abs(*it-nums[i]));
+            }
+            if(it!=st.begin())
+            {
+                sum=min(sum,abs(*prev(it)-nums[i]));
+            }
+        }
+        return sum;
+
+        
+    }
+};
