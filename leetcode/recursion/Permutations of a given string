@@ -1,0 +1,31 @@
+class Solution
+{
+	public:
+	    void solve(string s,set<string>&st,int i,int n)
+	    {
+	        if(i>n-1)
+	        {
+	            st.insert(s);
+	            return;
+	        }
+	        for(int j=i;j<n;j++)
+	        {
+	            swap(s[i],s[j]);
+	            solve(s,st,i+1,n);
+	        }
+	    }
+		vector<string>find_permutation(string s)
+		{
+		    // Code here there
+		    set<string>st;
+		    vector<string>ans;
+		    solve(s,st,0,s.length());
+		    for(auto i:st)
+		    {
+		        ans.push_back(i);
+		    }
+		    sort(ans.begin(),ans.end());
+		    return ans;
+		    
+		}
+};
