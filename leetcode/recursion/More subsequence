@@ -1,0 +1,35 @@
+#include <set>
+void solve(int n,string a,set<string>&st,int i,string p)
+{
+    if(i==n)
+    {
+        return;
+    }
+    for(int j=i;j<n;j++)
+    {
+        p+=a[j];
+        st.insert(p);
+        solve(n,a,st,i+1,p);
+        p.pop_back();
+    }
+
+}
+string moreSubsequence(int n, int m, string a, string b)
+{
+    // Write your code here
+    set<string>st1;
+    set<string>st2;
+    int i=0;
+    string p="";
+    solve(n,a,st1,i=0,p);
+    solve(m,b,st2,i=0,p);
+    if(st1.size()>st2.size())
+    {
+        return a;
+    }
+    else{
+        return b;
+    }
+
+}
+// used recursion which gives TLE for some outputs..can be used hashmaps..
