@@ -1,0 +1,27 @@
+class Solution {
+public:
+    void solve(int n,int i,int j,vector<string>&ans,string p)
+    {
+        if(p.length()==2*n)
+        {
+            ans.push_back(p);
+            return;
+        }
+        if(i<n)
+        {
+            solve(n,i+1,j,ans,p+'(');
+        }
+        if(j<i)
+        {
+            solve(n,i,j+1,ans,p+')');
+        }
+
+    }
+    vector<string> generateParenthesis(int n) {
+        vector<string>ans;
+        string p="";
+        solve(n,0,0,ans,p);
+        return ans;
+        
+    }
+};
