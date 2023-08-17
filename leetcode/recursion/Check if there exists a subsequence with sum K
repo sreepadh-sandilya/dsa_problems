@@ -1,0 +1,41 @@
+class Solution{
+    public:
+    bool solve(int n, vector<int>& arr, int k,int i,vector<int>o,int s)
+    {
+        if(s>k)
+        {
+            return false;
+        }
+        if(i==n)
+        {
+            if(s==k)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        
+        o.push_back(arr[i]);
+        s+=arr[i];
+        if(solve(n,arr,k,i+1,o,s)==true){
+            return true;
+        }
+        s-=arr[i];
+        o.pop_back();
+        if(solve(n,arr,k,i+1,o,s)==true){
+            return true;
+        }
+        return false;
+        
+    }
+    bool checkSubsequenceSum(int n, vector<int>& arr, int k) {
+        // Code here
+        vector<int>o;
+        
+        return solve(n,arr,k,0,o,0);
+        
+    }
+};
