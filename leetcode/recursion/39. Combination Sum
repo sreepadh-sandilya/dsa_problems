@@ -1,0 +1,44 @@
+class Solution {
+public:
+   void solve(vector<int>& c, int t,int i,int n,set<vector<int>>&st,vector<int>o,int sum)
+   {
+       
+       if(sum>t)
+       {
+           return;
+       }
+       if(sum==t)
+       {
+           sort(o.begin(),o.end());
+           st.insert(o);
+           return;
+       }
+       if(i==n)
+       {
+           return;
+       }
+       o.push_back(c[i]);
+       if(sum<t)
+       {
+           sum+=c[i];
+           solve(c,t,i,n,st,o,sum);
+       }
+       o.pop_back();
+       sum-=c[i];
+       solve(c,t,i+1,n,st,o,sum);
+
+   }
+    vector<vector<int>> combinationSum(vector<int>& c, int t) {
+        int n=c.size(),sum=0;
+
+        vector<vector<int>>ans;
+        set<vector<int>>st;
+        vector<int>o;
+        solve(c,t,0,n,st,o,sum);
+        for(auto i:st)
+        {
+            ans.push_back(i);
+        }
+        return ans;
+    }
+};
