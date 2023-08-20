@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool isAcronym(vector<string>& words, string s) {
+        string p="";
+        for(auto i:words)
+        {
+            p+=i[0];
+        }
+        if(s==p)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
+};
