@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int minimumSum(int n, int k) {
+        map<int,int>mp;
+        mp[1]++;
+        int s=1;
+        int i=2;
+        while(s<n)
+        {
+            if(!mp.count(k-i))
+            {
+                s++;
+                mp[i]++;
+            }
+            i++;
+        }
+        int sum=0;
+        for(auto i:mp)
+        {
+            sum+=i.first;
+        }
+        
+        return sum;
+    }
+};
