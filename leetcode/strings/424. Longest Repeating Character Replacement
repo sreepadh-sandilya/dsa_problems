@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        int maxf=0,j=0,sum=0;
+        int n=s.length();
+        map<char,int>mp;
+        for(int i=0;i<n;i++)
+        {
+           mp[s[i]]++;
+           maxf=max(maxf,mp[s[i]]);
+           if(i-j+1-maxf<=k){
+           sum=max(sum,i-j+1);
+           }
+           else
+           {
+               mp[s[j]]--;
+               j++;
+           }
+        }
+
+        return sum;
+    }
+};
