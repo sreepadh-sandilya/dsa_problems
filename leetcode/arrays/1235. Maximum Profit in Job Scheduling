@@ -1,0 +1,49 @@
+
+bool comp(const vector<int>&a,vector<int>&b)
+{
+    return a[1]<b[1];
+}
+
+class Solution {
+public:
+    int jobScheduling(vector<int>& startTime, vector<int>& endTime, vector<int>& profit) {
+        vector<vector<int>>v;
+        int n=startTime.size();
+        for(int i=0;i<n;i++)
+        {
+            v.push_back({startTime[i],endTime[i],profit[i]});
+
+        }
+        int sum=0;
+        sort(v.begin(),v.end(),comp);
+        map<int,int>mp;
+        for(int i=0;i<n;i++)
+        {
+            int s=v[i][0];
+            int e=v[i][1];
+            int p=v[i][2];
+            if(i==0)
+            {
+                mp[e]=p;
+            }
+            else
+            {
+                auto it=mp.upper_bound(s);
+                if(it==mp.begin())
+                {
+                    mp[e]=max(mp[e],p);
+                }
+                else
+                {
+                    it--;
+                    mp[e]=max(mp[e],p+it->second);
+                    
+                }
+            }
+            sum=max(mp[e],sum);
+            mp[e]=sum;
+        }
+
+        return sum;
+    }
+};
