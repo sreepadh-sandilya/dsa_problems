@@ -1,0 +1,44 @@
+  bool comp(const vector<int>&a,const vector<int>&b)
+    {
+        return a[1]<b[1];
+    }
+class Solution {
+public:
+
+    int maximizeTheProfit(int n, vector<vector<int>>& o) {
+        sort(o.begin(),o.end(),comp);
+        map<int,int>m;
+        int res=0;
+
+        for(int i=0;i<o.size();i++)
+        {
+            int start=o[i][0];
+            int end=o[i][1];
+            int profit=o[i][2];
+            if(i==0)
+            {
+               m[end]=profit;
+            }
+            else
+            {
+                auto it=m.lower_bound(start);
+
+                if(it==m.begin())
+                {
+                     m[end]=max(m[end],profit);
+                    
+                }
+                else
+                {
+                   it--;
+                    m[end]=max(m[end],profit+it->second);
+                }
+            }
+            res=max(m[end],res);
+            m[end]=res;
+        }
+
+        return res;
+        
+    }
+};
