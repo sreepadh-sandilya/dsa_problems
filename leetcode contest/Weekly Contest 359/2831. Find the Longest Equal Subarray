@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int longestEqualSubarray(vector<int>& nums, int k) {
+
+        map<int,int>mp;
+        int maxf=0,i=0,j=0;
+        int n=nums.size();
+        while(i<n)
+        {
+           
+            mp[nums[i]]++;
+            maxf=max(maxf,mp[nums[i]]);
+            while(i-j+1-maxf>k)
+            {
+                mp[nums[j]]--;
+                j++;
+                
+            } 
+            i++;          
+        }
+        
+        return maxf;
+    }
+};
