@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int maxConsecutiveAnswers(string a, int k) {
+        unordered_map<char,int>mp;
+        int n=a.length(),j=0,maxf=0,sum=0;
+        for(int i=0;i<n;i++)
+        {
+            mp[a[i]]++;
+            maxf=max(maxf,mp[a[i]]);
+            if(i-j+1-maxf>k)
+            {
+                mp[a[j]]--;
+                j++;
+            }
+            sum=max(sum,i-j+1);
+        }
+        return sum;
+    }
+};
