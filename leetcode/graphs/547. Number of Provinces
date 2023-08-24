@@ -1,0 +1,28 @@
+class Solution {
+public:
+   void dfs(int node,vector<bool>&vis,int n,vector<vector<int>>& c)
+   {
+       vis[node]=1;
+       for(int i=0;i<n;i++)
+       {
+           if(c[node][i] && !vis[i]){
+           dfs(i,vis,n,c);
+           }
+       }
+   }
+    int findCircleNum(vector<vector<int>>& c) {
+        int n=c.size();
+        int sum=0;
+        vector<bool>vis(n);
+        for(int i=0;i<n;i++)
+        {
+            if(!vis[i]){
+                sum++;
+            dfs(i,vis,n,c);
+            }
+        }
+
+        return sum;
+        
+    }
+};
