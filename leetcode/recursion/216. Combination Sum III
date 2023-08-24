@@ -37,3 +37,51 @@ public:
         
     }
 };
+
+
+
+// optimized approach:
+class Solution {
+public:
+    void solve(vector<vector<int>>&ans,vector<int>o,int i,int n,int k,int sum)
+    {
+        if(sum>k)
+        {
+            return;
+        }
+        if(o.size()>n)
+        {
+            return;
+        }
+       if(sum==k && o.size()==n)
+       {
+           ans.push_back(o);
+           return;
+       }
+       if(i==10)
+       {
+           return;
+       }
+
+
+        for(int j=i;j<10;j++)
+        {
+            o.push_back(j);
+            sum+=j;
+            solve(ans,o,j+1,n,k,sum);
+            o.pop_back();
+            sum-=j;
+            // solve(ans,o,j+1,n,k,sum);
+
+        }
+    }
+    vector<vector<int>> combinationSum3(int k, int n) {
+        int i=1,sum=0;
+        vector<int>o;
+        vector<vector<int>>ans;
+        solve(ans,o,i,k,n,sum);
+        return ans;
+
+        
+    }
+};
