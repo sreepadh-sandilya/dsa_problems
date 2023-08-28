@@ -1,0 +1,80 @@
+class Solution {
+public:
+   void bfs(vector<vector<int>>& grid,queue<pair<int,int>>&q,int m,int n,int &sum)
+   {
+       while(!q.empty())
+       {
+           cout<<q.size()<<endl;
+           int k=q.size();
+           for(int i=0;i<k;i++)
+           {
+            //    cout<<q.front().first<<" "<<q.front().second<<endl;
+               pair<int,int>temp=q.front();
+            //    grid[temp.first][temp.second]=2;
+               q.pop();
+
+
+                if (temp.first > 0 && grid[temp.first - 1][temp.second] == 1) {
+                    q.push(make_pair(temp.first - 1, temp.second));
+                    // cout<<"o"<<endl;
+                    grid[temp.first - 1][temp.second]=2;
+                }
+                if (temp.first < m - 1 && grid[temp.first + 1][temp.second] == 1) {
+                    q.push(make_pair(temp.first + 1, temp.second));
+                    // cout<<"t"<<endl;
+                    grid[temp.first + 1][temp.second]=2;
+                }
+                if (temp.second > 0 && grid[temp.first][temp.second - 1] == 1) {
+                    q.push(make_pair(temp.first, temp.second - 1));
+                    // cout<<"th"<<endl;
+                    grid[temp.first][temp.second - 1]=2;
+                }
+                if (temp.second < n - 1 && grid[temp.first][temp.second + 1] == 1) {
+                    q.push(make_pair(temp.first, temp.second + 1));
+                    // cout<<"f"<<endl;
+                    grid[temp.first][temp.second + 1]=2;
+                }
+           }
+           
+           sum++;
+       }
+   }
+    int orangesRotting(vector<vector<int>>& grid) {
+        queue<pair<int,int>>q;
+        int m=grid.size();
+        int n=grid[0].size(),sum=-1;
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+               if(grid[i][j]==2)
+               {
+                   q.push(make_pair(i,j));
+               }
+            }
+        }
+
+        bfs(grid,q,m,n,sum);
+        for(auto i:grid)
+        {
+            for(auto j:i)
+            {
+                if(j==1)
+                {
+                    return -1;
+                }
+            }
+        }
+
+        if(sum<0)
+        {
+            return 0;
+        }
+        else
+        {
+            return sum;
+        }
+        
+    }
+
+};
