@@ -1,0 +1,52 @@
+class Solution {
+public:
+    long long maxSum(vector<int>& nums, int m, int k) {
+        long long sum=0,t=0,sum1=0;
+        map<int,int>mp;
+        int j=0;
+        for(int i=0;i<k;i++)
+        {
+            if(mp[nums[i]]==0)
+            {
+                t++;
+            }
+            mp[nums[i]]++;
+            sum1+=nums[i];
+        }
+        
+        if(t>=m)
+        {
+            sum=max(sum,sum1);
+        }
+        // cout<<sum<<endl;
+        
+        for(int i=k;i<nums.size();i++)
+        {
+            
+            mp[nums[j]]--;
+            
+            if(mp[nums[j]]==0)
+            {
+                t--;
+                // cout<<nums[j]<<endl;
+            }
+            sum1-=nums[j];
+            if(mp[nums[i]]==0)
+            {
+                t++;
+                // cout<<t<<" "<<sum1;
+            }
+            mp[nums[i]]++;
+            sum1+=nums[i];
+            if(t>=m)
+            {
+                
+                sum=max(sum,sum1);
+            }
+            j++;
+        }
+        
+        return sum;
+        
+    }
+};
