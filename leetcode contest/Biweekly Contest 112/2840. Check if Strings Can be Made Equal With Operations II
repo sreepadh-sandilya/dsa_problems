@@ -1,0 +1,33 @@
+class Solution {
+public:
+    bool checkStrings(string s1, string s2) {
+        vector<char>st1,st2,st3,st4;
+        int n=s1.length();
+        for(int i=0;i<n;i++)
+        {
+            if(i%2==0)
+            {
+                st1.push_back(s1[i]);
+                st3.push_back(s2[i]);
+            }
+            else
+            {
+                st2.push_back(s1[i]);
+                st4.push_back(s2[i]);
+            }
+        }
+        sort(st1.begin(),st1.end());
+        sort(st2.begin(),st2.end());
+        sort(st3.begin(),st3.end());
+        sort(st4.begin(),st4.end());
+        if(st1==st3 && st2==st4)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
+};
