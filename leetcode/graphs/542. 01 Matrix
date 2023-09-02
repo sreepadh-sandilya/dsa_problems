@@ -1,0 +1,66 @@
+class Solution {
+public:
+    void bfs(vector<vector<int>>&ans,vector<vector<bool>>&vis,vector<vector<int>>&mat,queue<pair<int,int>>&q,int m,int n)
+    {
+        int sum=1;
+         while(!q.empty())
+         {
+            int k=q.size();
+            for(int i=0;i<k;i++)
+            {
+                pair<int,int>temp=q.front();
+                q.pop();
+
+                if (temp.first > 0 && vis[temp.first - 1][temp.second] == false) {
+                    q.push(make_pair(temp.first - 1, temp.second));
+                    vis[temp.first - 1][temp.second]=true;
+                    ans[temp.first - 1][temp.second]=sum;
+                }
+                if (temp.first < m - 1 && vis[temp.first + 1][temp.second] == false) {
+                    q.push(make_pair(temp.first + 1, temp.second));
+                    vis[temp.first + 1][temp.second]=true;
+                    ans[temp.first + 1][temp.second]=sum;
+                }
+                if (temp.second > 0 && vis[temp.first][temp.second - 1] == false) {
+                    q.push(make_pair(temp.first, temp.second - 1));
+                    vis[temp.first][temp.second - 1]=true;
+                    ans[temp.first][temp.second - 1]=sum;
+                }
+                if (temp.second < n - 1 && vis[temp.first][temp.second + 1] == false) {
+                    q.push(make_pair(temp.first, temp.second + 1));
+                    vis[temp.first][temp.second + 1]=true;
+                    ans[temp.first][temp.second + 1]=sum;
+                }
+
+            }
+            sum++;
+         }
+    }
+    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
+        int m=mat.size(),n=mat[0].size();
+
+        vector<vector<bool>>vis(m,vector<bool>(n,false));
+        vector<vector<int>> ans(m, vector<int>(n, 0));
+
+        queue<pair<int,int>>q;
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(mat[i][j]==0)
+                {
+                    q.push(make_pair(i,j));
+                    vis[i][j]=true;
+                    ans[i][j]=0;
+                    
+                }
+            }
+        }
+        bfs(ans,vis,mat,q,m,n);
+        return ans;
+
+
+
+        
+    }
+};
