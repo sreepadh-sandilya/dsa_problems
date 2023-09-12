@@ -1,0 +1,61 @@
+
+// this has to be done by dp... recursive solution will give the tle error
+
+class Solution {
+public:
+   bool solve(string &s,map<string,int>&mp,int i,string p,int sum,int &sz)
+   {
+    //  if(sum==sz)
+    //  {
+    //      return true;
+    //  }
+     if(i>=s.length())
+     {
+         return true;
+     }
+
+     for(int j=i;j<s.length();j++)
+     {
+        p=s.substr(i,j-i+1);
+        // cout<<p<<endl;
+        // cout<<j<<endl;
+
+        if(mp[p]>1)
+        {
+            if(solve(s,mp,j+1,p,sum,sz)){
+                return true;
+            }
+        }
+        else if(mp[p]==1)
+        {
+            
+            sum++;
+            mp[p]++;
+            if(solve(s,mp,j+1,p,sum,sz))
+            {
+                return true;
+            }
+        }
+        
+        
+     }
+    //  solve(s,mp,i+1,p,sum,sz);
+     return false;
+   }
+    bool wordBreak(string s, vector<string>& wordDict) {
+        int sz=wordDict.size();
+        map<string,int>mp;
+        int sum=0;
+        for(auto i:wordDict)
+        {
+            mp[i]++;
+        }
+        int i=0;
+        string p="";
+        if(solve(s,mp,i,p,sum,sz)){
+            return true;
+        }
+        return false;
+        
+    }
+};
