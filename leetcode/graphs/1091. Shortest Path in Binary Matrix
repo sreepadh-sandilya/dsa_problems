@@ -1,0 +1,50 @@
+class Solution {
+public:
+    int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
+        priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>>pq;
+        int n=grid.size(),m=grid[0].size();
+        vector<int>a={0,0,1,1,0,-1,1,-1,-1};
+        vector<int>b={0,1,0,1,-1,0,-1,1,-1};
+        vector<vector<int>>dist(n,vector<int>(m,INT_MAX));
+        dist[0][0]=0;
+        if(grid[0][0]!=0)
+        {
+            return -1;
+        }
+        pq.push(make_pair(0,make_pair(0,0)));
+        while(!pq.empty())
+        {
+            pair<int,pair<int,int>>temp=pq.top();
+            pq.pop();
+            int d=temp.first;
+            pair<int,int>node=temp.second;
+            int k=node.first,l=node.second;
+            for(int i=0;i<9;i++)
+            {
+                int p=k+a[i];
+                int q=l+b[i];
+                if(p>=0 && p<m && q>=0 && q<n)
+                {
+                    if(grid[p][q]==0 && dist[k][l]+1<dist[p][q])
+                    {
+                        dist[p][q]=dist[k][l]+1;
+                        cout<<dist[p][q]<<" "<<p<<" "<<q<<endl;
+                        pq.push(make_pair(dist[p][q],make_pair(p,q)));
+                    }
+                }
+            }
+            
+
+        }
+
+        // return dist[n-1][m-1];
+        if(dist[n-1][m-1]==INT_MAX)
+        {
+            return -1;
+        }
+        else
+        {
+            return dist[n-1][m-1]+1;
+        }
+    }
+};
