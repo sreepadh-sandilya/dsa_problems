@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int minLengthAfterRemovals(vector<int>& nums) {
+        map<int,int>mp;
+        int n=nums.size();
+        int sum=0;
+        for(auto i:nums)
+        {
+            mp[i]++;
+            sum=max(sum,mp[i]);
+        }
+        
+        if(sum<=n/2)
+        {
+            if(n%2==0)
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+        else
+        {
+            return 2*sum-n;
+        }
+        
+        
+    }
+};
