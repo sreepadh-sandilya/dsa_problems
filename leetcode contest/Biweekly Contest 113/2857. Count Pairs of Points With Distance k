@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int countPairs(vector<vector<int>>& c, int k) {
+        int n=c.size();
+        int sum1=0;
+        map<pair<int,int>,int>mp;
+        mp[{c[0][0],c[0][1]}]=1;
+        for(int i=1;i<n;i++)
+        {
+            // cout<<i<<endl;
+            for(int j=0;j<=k;j++)
+            {
+                // cout<<j<<endl;
+                if(mp.count({(j^c[i][0]),((k-j)^c[i][1])}))
+                {
+                    sum1+=mp[{(j^c[i][0]),((k-j)^c[i][1])}];
+                    
+                }
+                
+            }
+            mp[{c[i][0],c[i][1]}]++;
+        }
+        
+        return sum1;
+    }
+};
