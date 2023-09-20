@@ -1,0 +1,48 @@
+class Solution {
+public:
+    int minimumEffortPath(vector<vector<int>>& heights) {
+        priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>>pq;
+        int n=heights.size();
+        int m=heights[0].size();
+        cout<<n<<" "<<m<<endl;
+        vector<vector<int>>dist(n,vector<int>(m,INT_MAX));
+        dist[0][0]=0;
+        pq.push(make_pair(0,make_pair(0,0)));
+        vector<int>a={0,0,-1,1};
+        vector<int>b={-1,1,0,0};
+        while(!pq.empty())
+        {
+            pair<int,pair<int,int>>temp=pq.top();
+            pq.pop();
+            int d=temp.first;
+            pair<int,int>node=temp.second;
+            int k=node.first,l=node.second;
+           
+            for(int i=0;i<4;i++)
+            {
+                int p=k+a[i],q=l+b[i];
+                if(p>=0 && p<n && q>=0 && q<m)
+                {
+                   if(dist[p][q]>dist[k][l])
+                   {
+                       if(abs(heights[k][l]-heights[p][q])<dist[p][q])
+                       {
+                           dist[p][q]=abs(heights[k][l]-heights[p][q]);
+                           dist[p][q]=max(abs(heights[k][l]-heights[p][q]),d);
+                           pq.push(make_pair(dist[p][q],make_pair(p,q)));
+                        
+                       }
+                       
+                    
+                   }
+                }
+            }
+        }
+
+        return dist[n-1][m-1];
+        
+    }
+
+
+};
+
