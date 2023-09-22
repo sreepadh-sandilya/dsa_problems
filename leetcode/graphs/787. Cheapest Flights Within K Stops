@@ -1,0 +1,79 @@
+
+// this is using dfs whihc gives tle..
+class Solution {
+public:
+    void dfs(int node,vector<vector<int>>& flights,int src,int dst,int k,int sum,vector<bool>&vis,int n,int &f,int &sum1)
+    {
+        // cout<<node<<endl;
+         if(node==n)
+         {
+             return;
+
+         }
+         if(sum>k)
+         {
+            return;
+         }
+         if(node==dst)
+         {
+            f=min(f,sum1);
+            return;
+         }
+         
+            // int i=flights[node][1];
+            // sum1=sum1+flights[node][2];
+            // cout<<sum1<<" "<<flights[node][1]<<endl;
+            for(int j=0;j<flights.size();j++)
+            {
+                // cout<<j<<endl;
+                if(flights[j][0]==node){
+                
+                if(!vis[flights[j][1]]){
+                sum1+=flights[j][2];
+                // cout<<sum1<<" "<<flights[j][1]<<endl;
+                vis[flights[j][1]]=true;
+                
+                // cout<<sum1<<" "<<flights[j][1]<<endl;
+                dfs(flights[j][1],flights,src,dst,k,sum+1,vis,n,f,sum1);
+                vis[flights[j][1]]=false;
+                sum1-=flights[j][2];
+                }
+                
+            // sum1=sum1-flights[node][2];
+
+                }
+            }
+            
+        
+
+
+    }
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
+        int sum=0,f=INT_MAX;
+        vector<bool>vis(n,false);
+        for(int i=0;i<flights.size();i++)
+        {
+            // cout<<i<<endl;
+
+            if(flights[i][0]==src)
+            {
+                
+            if(vis[flights[i][1]]!=true){
+                
+            vis[flights[i][1]]=true;
+            dfs(flights[i][1],flights,src,dst,k,sum,vis,n,f,flights[i][2]);
+
+            
+            }
+            }
+        }
+
+        if(f==INT_MAX)
+        {
+            return -1;
+        }
+        return f;
+
+        
+    }
+};
