@@ -1,0 +1,28 @@
+class Solution {
+public:
+    string maximumOddBinaryNumber(string s) {
+        int sum=0;
+        for(auto i:s)
+        {
+            if(i=='1')
+            {
+                sum++;
+            }
+        }
+        int n=s.length(),k=0;
+        string p="";
+        while(sum>=2)
+        {
+            k++;
+            p+='1';
+            sum--;
+        }
+        for(int i=0;i<n-k-1;i++)
+        {
+            p+='0';
+        }
+        p+='1';
+        return p;
+        
+    }
+};
