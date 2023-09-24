@@ -1,0 +1,72 @@
+class Solution {
+public:
+    long long maximumSumOfHeights(vector<int>& m) {
+        stack<int>st;
+        int n=m.size();
+        vector<int>prev(n,-1);
+        for(int i=0;i<n;i++)
+        {
+            while(!st.empty() && m[st.top()]>=m[i])
+            {
+                st.pop();
+            }
+            if(!st.empty())
+            {
+                prev[i]=st.top();
+            }
+            st.push(i);
+        }
+        
+        vector<int>next(n,n);
+        st=stack<int>();
+        for(int i=n-1;i>=0;i--)
+        {
+            while(!st.empty() && m[st.top()]>=m[i])
+            {
+                st.pop();
+            }
+            if(!st.empty())
+            {
+                next[i]=st.top();
+            }
+            st.push(i);
+        }
+        
+        vector<long long>left(n,0);
+        vector<long long>right(n,0);
+        left[0]=m[0];
+        for(int i=1;i<n;i++)
+        {
+            long long count=i-prev[i];
+            left[i]+=count*m[i];
+            if(prev[i]!=-1)
+            {
+                left[i]+=left[prev[i]];
+            }
+        }
+        
+        right[n-1]=m[n-1];
+        for(int i=n-2;i>=0;i--)
+        {
+            long long count=next[i]-i;
+            right[i]+=count*m[i];
+            if(next[i]!=n)
+            {
+                right[i]+=right[next[i]];
+            }
+            
+        }
+        
+        long long sum=0;
+        for(int i=0;i<n;i++)
+        {
+            // sum=max(right[i]+left[i]-m[i],sum);
+            sum = std::max(static_cast<long long>(right[i] + left[i] - m[i]), static_cast<long long>(sum));
+
+            
+        }
+        return sum;
+        
+        
+    }
+};
