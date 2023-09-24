@@ -1,0 +1,46 @@
+class Solution {
+public:
+    long long maximumSumOfHeights(vector<int>& h) {
+        long long sum=0;
+        int n=h.size();
+        for(int i=0;i<n;i++)
+        {
+            long long k=h[i];
+            vector<int>v(n);
+            v[i]=h[i];
+            for(int j=i-1;j>=0;j--)
+            {
+                if(h[j]<=v[j+1])
+                {
+                    v[j]=h[j];
+                    k+=v[j];
+                }
+                else
+                {
+                    v[j]=v[j+1];
+                    k+=v[j];
+                }
+                    
+            }
+            
+            for(int j=i+1;j<n;j++)
+            {
+                if(h[j]<=v[j-1])
+                {
+                    v[j]=h[j];
+                    k+=v[j];
+                }
+                else
+                {
+                    v[j]=v[j-1];
+                    k+=v[j];
+                }
+            }
+            sum=max(k,sum);
+            
+        }
+        
+        return sum;
+        
+    }
+};
