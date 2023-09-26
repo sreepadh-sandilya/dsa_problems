@@ -1,0 +1,25 @@
+class Solution{
+public:
+
+    vector<int> count_NGE(int n, vector<int> &arr, int queries, vector<int> &indices){
+        vector<int>s;
+        for(int i=0;i<queries;i++){
+            int cnt=0;
+            int j=indices[i];
+            if(j<n-1){
+            for(int k=j+1;k<n;k++){
+                if(arr[j]<arr[k]){
+                    cnt++;
+                }
+                
+            }
+            s.push_back(cnt);
+        }
+        else{
+             s.push_back(cnt);
+        }
+        }
+        return s;
+    }
+
+};
