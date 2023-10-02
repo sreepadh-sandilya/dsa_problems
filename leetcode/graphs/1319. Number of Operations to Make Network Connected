@@ -1,0 +1,57 @@
+class Solution {
+public:
+
+    void dfs(vector<vector<int>>& c,int node,int n,map<int,vector<int>>&mp,vector<bool>&vis)
+    {
+        if(!vis[node])
+        {
+           vis[node]=true;
+           for(auto i:mp[node])
+           {
+               if(!vis[i])
+               {
+                   dfs(c,i,n,mp,vis);
+               }
+           }
+        }
+    }
+    int makeConnected(int n, vector<vector<int>>& c) {
+        map<int,vector<int>>mp;
+        for(auto i:c)
+        {
+            mp[i[0]].push_back(i[1]);
+            mp[i[1]].push_back(i[0]);
+        }
+
+        int nc=0,ca=0;
+        vector<bool>vis(n,false);
+        for(int i=0;i<n;i++)
+        {
+          if(!vis[i])
+          {
+              
+              dfs(c,i,n,mp,vis);
+              nc++;
+          }
+        }
+
+        for(int i=0;i<n;i++)
+        {
+            // if(mp.count(i)==0)
+            // {
+            //     nc++;
+            // }
+            ca+=mp[i].size();
+        }
+        // cout<<nc<<" "<<ca<<endl;
+
+        if(ca/2<n-1)
+        {
+            return -1;
+        }
+
+        return nc-1;
+
+        
+    }
+};
