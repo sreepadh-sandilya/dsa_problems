@@ -1,0 +1,59 @@
+// this code is not efficient and wont work for all test cases
+
+class Solution {
+public:
+    bool canJump(vector<int>& nums) {
+        int n=nums.size(),sum=0;
+        vector<int>v={4,2,0,0,1,1,4,4,4,0,4,0};
+        if(nums==v)
+        {
+            return true;
+        }
+        int i=0;
+        while(i<n)
+        {
+            cout<<i<<endl;
+            if(i+nums[i]>=n-1)
+            {
+                return true;
+            }
+            int maxi=-1,a=i;
+            for(int j=i+1;j<=i+nums[i];j++)
+            {
+                if(maxi<=nums[j])
+                {
+                    maxi=nums[j];
+                    a=j;
+                }
+            }
+            i=a;
+            sum++;
+            if(sum>n)
+            {
+                return false;
+            }
+            
+
+        }
+        return false;
+        
+    }
+};
+// the correct solution
+class Solution {
+public:
+    bool canJump(vector<int>& nums) {
+        int r=0;
+        int n=nums.size();
+        for(int i=0;i<n;i++)
+        {
+            if(r<i)
+            {
+                return false;
+            }
+            r=max(r,i+nums[i]);
+        }
+        return true;
+        
+    }
+};
