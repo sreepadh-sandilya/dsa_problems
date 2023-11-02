@@ -35,3 +35,22 @@ int frogJump(int n, vector<int> &heights)
     int mini=solve(dp,n,0,sum,heights);
     return mini;
 }
+
+//tabulation method:
+#include <bits/stdc++.h> 
+int frogJump(int n, vector<int> &heights)
+{
+    // Write your code here.
+    vector<int>dp(n,-1);
+    dp[0]=0;
+    for(int i=1;i<n;i++)
+    {
+        if(i==1)
+        {
+            dp[i]=abs(heights[i]-heights[i-1]);
+            continue;
+        }
+        dp[i]=min(dp[i-1]+abs(heights[i]-heights[i-1]),dp[i-2]+abs(heights[i]-heights[i-2]));
+    }
+    return dp[n-1];
+}
