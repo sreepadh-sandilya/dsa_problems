@@ -1,0 +1,37 @@
+#include <bits/stdc++.h> 
+
+int solve(vector<int>&dp,int n,int i,int &sum,vector<int>&heights)
+{
+    if(i==n-1)
+    {
+        dp[i]=0;
+        return 0;
+    }
+    if(dp[i]!=-1)
+    {
+        return dp[i];
+    }
+    int a=INT_MAX,b=INT_MAX;
+    if(i+1<n)
+    {
+      a=abs(heights[i]-heights[i+1])+solve(dp,n,i+1,sum,heights);
+    }
+    if(i+2<n)
+    {
+        b=abs(heights[i]-heights[i+2])+solve(dp,n,i+2,sum,heights);
+    }
+    sum=min(a,b);
+    
+    dp[i]=sum;
+    return sum;
+
+}
+
+int frogJump(int n, vector<int> &heights)
+{
+    // Write your code here.
+    vector<int>dp(n,-1);
+    int i=0,sum=INT_MAX;
+    int mini=solve(dp,n,0,sum,heights);
+    return mini;
+}
