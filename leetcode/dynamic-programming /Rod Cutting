@@ -1,0 +1,28 @@
+class Solution{
+  public:
+    int solve(int price[],vector<int>&dp,int n)
+    {
+        if(n==0)
+        {
+            return 0;
+        }
+        if(dp[n]!=-1)
+        {
+            return dp[n];
+        }
+        int ans=INT_MIN;
+        for(int i=0;i<n;i++)
+        {
+            if(n-i-1>=0){
+            ans=max(ans,price[i]+solve(price,dp,n-i-1));
+            }
+        }
+        dp[n]=ans;
+        return ans;
+    }
+    int cutRod(int price[], int n) {
+        //code here
+        vector<int>dp(n+1,-1);
+        return solve(price,dp,n);
+    }
+};
