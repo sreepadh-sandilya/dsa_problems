@@ -1,0 +1,43 @@
+class Solution{   
+public:
+    bool solve(vector<vector<int>>&dp,vector<int>arr,int sum,int n,int i)
+    {
+        if(sum==0)
+        {
+            return true;
+        }
+        if(sum<0)
+        {
+            return false;
+        }
+        if(i==n-1)
+        {
+            if(arr[i]==sum)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        if(dp[i][sum]!=-1)
+        {
+            return dp[i][sum];
+        }
+        
+        
+        bool take=solve(dp,arr,sum-arr[i],n,i+1);
+        
+        bool nottake=solve(dp,arr,sum,n,i+1);
+        bool ans=take || nottake;
+        dp[i][sum]=ans;
+        return ans;
+    }
+    bool isSubsetSum(vector<int>arr, int sum){
+        // code here 
+        int n=arr.size();
+        vector<vector<int>>dp(n,vector<int>(sum+1,-1));
+        return solve(dp,arr,sum,n,0);
+    }
+};
