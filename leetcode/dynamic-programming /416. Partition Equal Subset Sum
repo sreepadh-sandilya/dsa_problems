@@ -1,0 +1,57 @@
+class Solution {
+public:
+    bool solve(vector<int>&nums,int n,vector<vector<int>>&dp,int i,int sum,float k)
+    {
+        if(i>n-1)
+        {
+           return false;
+        }
+        if(sum==k)
+        {
+            dp[i][sum]=1;
+            return true;
+
+        }
+        if(sum>k)
+        {
+            dp[i][sum]=0;
+            return false;
+        }
+        if(dp[i][sum]==0)
+        {
+            return false;
+        }
+        if(dp[i][sum]==1)
+        {
+            return true;
+
+        }
+
+        bool a=solve(nums,n,dp,i+1,sum+nums[i],k);
+        bool b=solve(nums,n,dp,i+1,sum,k);
+        if(a||b == true)
+        {
+            dp[i][sum]=1;
+        }
+        else
+        {
+            dp[i][sum]=0;
+        }
+        return a||b;
+
+    }
+    bool canPartition(vector<int>& nums) {
+        int n=nums.size();
+        int sum=0;
+        for(auto i:nums)
+        {
+            sum+=i;
+        }
+        // cout<<sum<<endl;
+        float k=(float)sum/2;
+        // cout<<k<<endl;
+        vector<vector<int>>dp(n,vector<int>(sum+1,-1));
+        return solve(nums,n,dp,0,0,k);
+        
+    }
+};
