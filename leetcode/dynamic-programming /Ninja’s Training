@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+int solve(vector<vector<int>>&dp,vector<vector<int>> &points,int &n,int i,int &k)
+{
+    if(i>=n)
+    {
+        return 0;
+    }
+    int ans=INT_MIN;
+    if(dp[i][k]!=-1)
+    {
+        return dp[i][k];
+    }
+    for(int j=0;j<=2;j++)
+    {
+        if(k!=j)
+        {
+            dp[i][k]=max(dp[i][k],points[i][k]+solve(dp,points,n,i+1,j));
+        }
+    }
+    return dp[i][k];
+    
+}
+int ninjaTraining(int n, vector<vector<int>> &points)
+{
+    // Write your code here.
+    vector<vector<int>>dp(n,vector<int>(n,-1));
+    int ans=INT_MIN;
+    for(int j=0;j<=2;j++)
+    {
+      ans=max(ans,solve(dp,points,n,0,j));
+    }
+    return ans;
+}
