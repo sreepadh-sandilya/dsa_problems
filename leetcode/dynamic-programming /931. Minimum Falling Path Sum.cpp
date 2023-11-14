@@ -6,7 +6,7 @@ public:
         {
             return INT_MAX-101;
         }
-        if(dp[i][j]!=-1)
+        if(dp[i][j]!=INT_MIN)
         {
             return dp[i][j];
         }
@@ -28,7 +28,7 @@ public:
     }
     int minFallingPathSum(vector<vector<int>>& matrix) {
         int m=matrix.size(),n=matrix[0].size();
-        vector<vector<int>>dp(m,vector<int>(n,-1));
+        vector<vector<int>>dp(m,vector<int>(n,INT_MIN));
         int ans=INT_MAX;
         for(int i=0;i<n;i++){
         ans=min(ans, solve(dp,matrix,m,n,0,i));
@@ -38,6 +38,4 @@ public:
         
     }
 };
-
-
 
