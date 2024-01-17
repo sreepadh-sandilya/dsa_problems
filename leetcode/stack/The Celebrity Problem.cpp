@@ -32,3 +32,36 @@ public:
         return -1;
     }
 };
+
+// o(n) time complexity and o(1) space complexity:
+class Solution 
+{
+public:
+    //Function to find if there is a celebrity in the party or not.
+    int celebrity(vector<vector<int> >& m, int n) 
+    {
+        int i=0,j=n-1;
+        while(i<j)
+        {
+            if(m[i][j])
+            {
+                i++;
+            }
+            else
+            {
+                j--;
+            }
+        }
+        
+        for(j=0;j<n;j++)
+        {
+            if(j!=i && (m[j][i]==0 || m[i][j]==1))
+            {
+                return -1;
+            }
+        }
+        return i;
+        
+    }
+};
+
